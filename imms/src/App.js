@@ -17,9 +17,14 @@ function App() {
         >
           Learn React
         </a>
+
+        <h1>Institute Meal Managemnet System</h1>
+        <h1> Abhishek Bakchodi</h1>
+        <h2>Nanhe Kumar</h2>
       </header>
     </div>
   );
 }
+
 
 export default App;
