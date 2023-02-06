@@ -1,0 +1,6 @@
+features in IMMS
+
+1- Students can buy tokens by paying money
+2- It should be able to verify the payment and credit the tokens to users account
+3- Users can unenroll for a particular meal by pre informing
+4- Users can view mess menu
