@@ -34,7 +34,8 @@ Rate=(
 #model representing student 
 class Student(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    name=models.CharField(max_length=50,null=True,blank=True)
+    FirstName=models.CharField(max_length=50)
+    LastName=models.CharField(max_length=50)
     email=models.EmailField(null=True,blank=True)
     rollNo=models.CharField(max_length=10,null=True,blank=True)
     #field when true user has admin accesses
@@ -42,7 +43,8 @@ class Student(models.Model):
     #field for checking if he/she is a subscriber
     isGoldMember=models.BooleanField(default=True)
     def __str__(self):
-        return self.name
+        rs=self.FirstName+'-'+self.LastName
+        return rs
     
 
 #model representing meals in mess
@@ -85,7 +87,7 @@ class SilverToken(models.Model):
 
 #models representing the Feedback 
 class Feedback(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
     #date for testinomial its an auto field will be added by there own
     date=models.DateField(auto_now_add=True)
     # this is an testinomial provided by the user for food
