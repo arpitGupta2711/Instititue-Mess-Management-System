@@ -9,14 +9,20 @@ import ErrorPage from './pages/Error';
 import AdminPage from './pages/AdminPage';
 import MenuUpdate from './pages/MenuUpdate';
 import FeeUpdate from './pages/FeeUpdate';
+import {Home} from './components/Home/Home'
+import Subscribe from './components/Subscribe/Subscribe'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
     <div className="App">
+      
       <BrowserRouter>
+      <Navbar/>
        <Routes>
-        <Route path='/' element={<HomePage/>}></Route>
+        <Route path='/' element={<Home/>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>} ></Route>
+        <Route path='/subscribe' element={<Subscribe/>} ></Route>
         <Route path='/login' element={<SignIn></SignIn>} ></Route>
         <Route path='/profilepage' element={<ProfilePage></ProfilePage>} ></Route>
         <Route path='/adminpage' element={<AdminPage></AdminPage>} ></Route>
@@ -25,6 +31,7 @@ function App() {
         <Route path='*' element={<ErrorPage></ErrorPage>}></Route>
        </Routes>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }

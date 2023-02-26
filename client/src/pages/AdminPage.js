@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
+
 import { useState } from 'react';
 import { manageAdminPageNavbar } from '../features/manageNavSlice';
 import { useDispatch } from 'react-redux';
@@ -15,7 +15,7 @@ const AdminPage = () => {
    
   return (
     <>
-     <Navbar></Navbar>
+    
      <Container maxWidth="lg" sx={{mt:'64px' ,mb:'64px'}}>
       <Box >
        <Paper elevation={8} >

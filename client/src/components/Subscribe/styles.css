@@ -1,0 +1,8 @@
+.subscribe{
+    background-color: white;
+    margin-top: 40px;
+   border-radius: 50px 50px 50px;
+ display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
