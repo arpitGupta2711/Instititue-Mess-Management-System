@@ -70,6 +70,7 @@ class Menu(models.Model):
 class GoldToken(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     TokenCount=models.IntegerField()
+    time=models.CharField(max_length=1,choices=TIME, default='0')
     #Expiry will be generally 30 days from the day of buying tokens
     TokenExpiry=models.DateField()
     #minimum fee needed for user to continue his gold token 
