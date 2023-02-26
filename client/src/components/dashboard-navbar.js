@@ -17,7 +17,7 @@ const DashboardNavbar = () => {
     <>
       <CssBaseline />
        {/* Dashboard Navbar */}
-       <AppBar position="static" color="default"  sx={{position:'relative'}}>
+       {/* <AppBar position="static" color="default"  sx={{position:'relative'}}>
         <Toolbar >
           <Typography variant="h6" color="inherit" noWrap sx={{flexGrow:1, fontWeight:'700', fontSize:{lg:'32px',sm:'20px'}}} >
             Imms
@@ -35,7 +35,7 @@ const DashboardNavbar = () => {
             src="/static/images/avatars/avatar_1.png"
           ></Avatar>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
 
       <Box 
       component='main'

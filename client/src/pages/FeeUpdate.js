@@ -55,7 +55,7 @@ const FeeUpdate = () => {
                         fullWidth
                         id="subscriptionfee"
                         label="New Subscription Fee"
-                        autoFocus
+                       
                         />
                     </Grid>
 
