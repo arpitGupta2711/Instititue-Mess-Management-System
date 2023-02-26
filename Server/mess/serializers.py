@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Menu,Feedback,Student
+from .models import Menu,Feedback,Student, SilverToken, GoldToken
 
 
 
@@ -29,5 +29,17 @@ class ViewFeedbackSerializer(serializers.ModelSerializer):
     def get_RollNo(self,obj):
         student=Student.objects.get(user=obj.user)
         return student.rollNo
+    
+
+class CheckSilverTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=SilverToken
+        fields="__all__"
+
+
+class CheckGoldTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=GoldToken
+        fields="__all__"
 
 
