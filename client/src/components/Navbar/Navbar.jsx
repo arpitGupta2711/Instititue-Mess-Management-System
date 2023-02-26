@@ -4,11 +4,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import useStyles from './styles'
-import { Menu ,MenuItem} from '@mui/material';
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import food from '../../images/food.jpg'
 
 export default function Navbar() {
   return (
@@ -30,14 +28,16 @@ export default function Navbar() {
             {/* <Menu open>  
 
 <MenuItem> */}
-<Button variant="contained"  sx={{margin:'10px' }}>Admin</Button>
+        <Button variant="contained"  sx={{margin:'10px',borderRadius:'10px' }}>Admin</Button>
             <Button variant="contained" sx={{margin:'10px'}}>
                 <AccountCircleIcon/>
             </Button>
-            <Button variant="contained" sx={{margin:'10px', backgroundColor:'black' }}>Login</Button>
-            <Button variant="contained" sx={{ backgroundColor:'black' }}>SignUp</Button>
+            <Button variant="contained" sx={{margin:'10px', backgroundColor:'black',borderRadius:'10px' }}>Login</Button>
+            <Button variant="contained" sx={{ backgroundColor:'black',borderRadius:'10px' }}>SignUp</Button>
             {/* </MenuItem>
             </Menu> */}
+
+        
         </Toolbar>
       </AppBar>
     </Box>

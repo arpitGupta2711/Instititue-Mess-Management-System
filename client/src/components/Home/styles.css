@@ -1,0 +1,17 @@
+.gridContainer{
+ align-items: center;
+ margin-bottom: 50px;
+}
+/* this is to neglect the effect of maring from gridItem p below */
+.gridItem button p{
+    margin-left:0%;
+}
+
+.gridItem p{
+   margin-left:50%;
+}
+.gridItem button {
+    /* object-fit: contain; */
+    margin-left: 20%;
+    padding:2% 4%;
+}
