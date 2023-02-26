@@ -2,6 +2,8 @@ import React from 'react'
 
 
 import { Typography,Grid } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { manageHomePageNavbar } from '../../features/manageNavSlice';
 
 import Carousel from '../Carousel/Carousel';
 import Button from '@mui/material/Button';
@@ -10,6 +12,9 @@ import Testimonials from '../Testimonials/Testimonials';
 import Feedback from '../Feedback/Feedback';
 
 export const Home = () => {
+
+  const dispatch = useDispatch();
+  dispatch(manageHomePageNavbar())
   return (
     <>
    <img style={{objectFit:'cover',width:'100%', height:'15rem'}} src="images/food.jpg" alt ="food" />
@@ -37,8 +42,6 @@ export const Home = () => {
   <Grid className="gridItem" item xs={6}>
   <Button sx={{backgroundColor: '#733c1f',borderRadius:'18px'}} variant="contained"> 
   <Typography sx={{fontFamily: "'Architects Daughter', cursive"}}>Buy Token </Typography>
-
-    
     
     </Button>
     

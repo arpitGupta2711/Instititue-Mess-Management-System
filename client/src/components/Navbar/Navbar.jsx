@@ -6,38 +6,43 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-// import food from '../../images/food.jpg'
+import { Link } from 'react-router-dom';
+import { display } from '@mui/system';
+import {useSelector,useDispatch} from 'react-redux'
+
+
 
 export default function Navbar() {
+  
+  
+  const {Admin,AccountIcon,Login,SignUp,UpdateMenu,UpdateFee} = useSelector((store)=>store.navbar)
+  
+  // console.log(Admin,AccountIcon,Login,SignUp)
+
+  // const {,Account} = AdminPageButtons
+ 
+
   return (
     <Box sx={{ flexGrow: 1}}>
       <AppBar position="static" sx={{ backgroundColor:'white' }}>
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1,color:'black' ,fontWeight:'600',letterSpacing:'2px'}}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1,color:'black' ,fontWeight:'700',letterSpacing:'2px'}}>
             IMMS
           </Typography>
-            {/* <Menu open>  
-
-<MenuItem> */}
-        <Button variant="contained"  sx={{margin:'10px',borderRadius:'10px' }}>Admin</Button>
-            <Button variant="contained" sx={{margin:'10px'}}>
+            <Button variant="contained"  sx={{margin:'10px' ,display:`${UpdateMenu?'block':'none'}` }}>Update Menu</Button>
+            <Button variant="contained"  sx={{margin:'10px' ,display:`${UpdateFee?'block':'none'}`}}>Update Fee</Button>
+            <Button variant="contained"  sx={{margin:'10px' ,display:`${Admin?'block':'none'}` }}>Admin</Button>
+            <Button variant="contained" sx={{margin:'10px' ,display:`${AccountIcon?'':'none'}`}}>
                 <AccountCircleIcon/>
             </Button>
-            <Button variant="contained" sx={{margin:'10px', backgroundColor:'black',borderRadius:'10px' }}>Login</Button>
-            <Button variant="contained" sx={{ backgroundColor:'black',borderRadius:'10px' }}>SignUp</Button>
-            {/* </MenuItem>
-            </Menu> */}
-
-        
+            <Button variant="contained" sx={{margin:'10px', backgroundColor:'black' ,display:`${Login?'block':'none'}`}}><Link to='/login' style={{
+              color:'#fff',
+              textDecoration:'none'
+            }}>Login</Link></Button>
+            <Button variant="contained" sx={{ backgroundColor:'black' ,display:`${SignUp?'block':'none'}`}}><Link to='/signup' style={{
+              color:'#fff',
+              textDecoration:'none'
+            }}>Signup</Link></Button>
         </Toolbar>
       </AppBar>
     </Box>
