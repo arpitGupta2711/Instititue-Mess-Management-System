@@ -31,3 +31,9 @@ class ViewFeedbackSerializer(serializers.ModelSerializer):
         return student.rollNo
 
 
+class SilverTokenSerializers(serializers.ModelSerializer):
+    class Meta:
+        fields=['day','time']
+
+
+

@@ -82,7 +82,8 @@ class SilverToken(models.Model):
     #day and time representing the timeslot they will be eating
     day = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
     time=models.CharField(max_length=1,choices=TIME)
-    expiryDate=models.DateField(null=True,blank=True)
+    used=models.BooleanField(default=False)
+    expiryTime=models.DateTimeField(null=True,blank=True)
 
 
 #models representing the Feedback 
@@ -106,4 +107,8 @@ class NotEatingToday(models.Model):
     isRecurring=models.BooleanField(default=False)
 
 
+class GoldTokenPrice(models.Model):
+    TokenCount=models.IntegerField()
+    Price=models.FloatField()
+    UniqueConstraint(fields=['TokenCount'],name='count')
 

@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/akash/Dev/EDP Project/Server/venv/bin/python" "$0" "$@"
-' '''
+#!/home/akash/Dev/Instititue-Mess-Management-System/Server/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
