@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import UniqueConstraint
 from django.contrib.auth.models import User
-
+# from django.contrib.auth.models import AbstractUser
 
 
 DAYS_OF_WEEK = (
@@ -29,7 +29,9 @@ Rate=(
 )
 
 
-
+# class User(AbstractUser):
+#    rollNo = models.CharField(max_length=20,null=True,blank=True)
+   
 
 #model representing student 
 class Student(models.Model):
@@ -70,6 +72,7 @@ class Menu(models.Model):
 class GoldToken(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     TokenCount=models.IntegerField()
+    time=models.CharField(max_length=1,choices=TIME, default='0')
     #Expiry will be generally 30 days from the day of buying tokens
     TokenExpiry=models.DateField()
     #minimum fee needed for user to continue his gold token 

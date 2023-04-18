@@ -1,0 +1,33 @@
+
+
+.imgSlider{
+	position: relative;
+	margin-bottom: 80px;
+}
+.imgContent{
+	position: relative;
+}
+
+.testimonialSlider{
+    /* background-image: url('../../images/testimonials.png') ; */
+    background-color: rgb(236, 220, 217);
+    padding-top:40px;
+   
+    padding-right:60px;
+    margin-bottom:60px;
+}
+
+
+.slick-slide .naming{
+    /* translate:0%; */
+    /* translate:'-90px'; */
+    /* display:'inline'; */
+    display: flex;
+    justify-content: center;
+	
+	/* align-items: center; */
+    /* margin-top:80px; */
+    
+     /* margin:auto; */
+	
+}

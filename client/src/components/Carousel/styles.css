@@ -1,0 +1,29 @@
+
+.tag {
+	text-align: center;
+}
+
+.slick-slide img {
+	object-fit: cover;
+	margin: auto;
+	width: 100%;
+	/* opacity: 0.3; */
+	height: 66vh;
+}
+.menu {
+position: absolute;
+	top: 20%;
+	bottom:100%;
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+  }
+  
+.imgSlider{
+	position: relative;
+	margin-bottom: 80px;
+}
+.imgContent{
+	position: relative;
+}
+

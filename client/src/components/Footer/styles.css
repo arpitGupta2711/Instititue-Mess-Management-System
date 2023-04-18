@@ -1,0 +1,19 @@
+.footer{
+    margin-top: 70px;
+    background-color:rgb(236, 220, 217);
+    /* position: fixed; */
+    /* clear: both;
+    position: relative;
+    /* height: 200px; */
+    /* min-height: calc(100vh - 2px); */
+    /* display: table-row;
+    height: 0; */
+    /* min-height: 100vh; */
+    /* position: fixed;
+    bottom: 0;
+    left: 0; */
+   
+}
+.footer p{
+    margin-left:20px;
+}
