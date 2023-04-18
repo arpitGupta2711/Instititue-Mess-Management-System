@@ -102,24 +102,6 @@ const AdminPage = () => {
             </Paper>
           </Grid>
 
-      {showQr && (
-        <div>
-          {/* <QrReader
-            onResult={(result, error) => {
-              if (!!result) {
-                setData(result?.text);
-                setShowQr(false)
-              }
-
-              if (!!error) {
-                console.info(error);
-              }
-            }}
-            style={{ width: "50%" }}
-          /> */}
-          <p>{data}</p>
-        </div>
-      )}
           <Grid item xs={12}>
             <Paper style={{
               backgroundImage:`url(${img})`,
