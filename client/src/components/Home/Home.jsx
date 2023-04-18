@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import './styles.css'
 import Testimonials from '../Testimonials/Testimonials';
 import Feedback from '../Feedback/Feedback';
-
+import {Link} from 'react-router-dom'
 export const Home = () => {
 
   const dispatch = useDispatch();
@@ -28,22 +28,26 @@ export const Home = () => {
     
   </Grid>
   <Grid className="gridItem" item xs={6}>
+  <Link to='/subscribe' style={{color:'white',textDecoration:'none'}}>
     <Button sx={{backgroundColor: '#733c1f',borderRadius:'18px'}} variant="contained"> 
+   
   <Typography sx={{fontFamily: "'Architects Daughter', cursive"}}>Subscribe </Typography>
-
-    
-    
     </Button>
+    </Link>
   </Grid>
   <Grid className="gridItem" item xs={6}>
   <Typography sx={{fontFamily: "'Architects Daughter', cursive",fontSize:'20px'}}> Try Tommorow's Meal</Typography>
     
   </Grid>
   <Grid className="gridItem" item xs={6}>
+  <Link to='/buytoken' style={{color:'white',textDecoration:'none'}}>
+
   <Button sx={{backgroundColor: '#733c1f',borderRadius:'18px'}} variant="contained"> 
   <Typography sx={{fontFamily: "'Architects Daughter', cursive"}}>Buy Token </Typography>
     
     </Button>
+    </Link>
+
     
   </Grid>
  

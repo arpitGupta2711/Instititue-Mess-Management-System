@@ -38,16 +38,21 @@ const Testimonials = () => {
     ]
 
     const settings = {
-        infinite: true,
-        dots: true,
-        slidesToShow: 1,
-        arrows:false,
-        slidesToScroll: 1,
-        lazyLoad: false,
-        autoplay: true,
-      autoplaySpeed: 10000,       
-      };
-
+      infinite: true,
+      dots: true,
+      slidesToShow: 1,
+      arrows:false,
+      slidesToScroll: 1,
+      lazyLoad: false,
+      autoplay: true,
+    autoplaySpeed: 1000  ,
+    // prevArrow: <PrevButton />,
+    // nextArrow: <NextButton />,
+    // customPaging: (i) => <div>{i + 1}</div>,
+   
+    // width:"100px"
+     
+    };
 
    
   return (

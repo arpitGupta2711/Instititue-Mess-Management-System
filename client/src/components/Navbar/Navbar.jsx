@@ -25,24 +25,27 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1}}>
       <AppBar position="static" sx={{ backgroundColor:'white' }}>
-        <Toolbar>
+        <Toolbar> 
+        
           <Typography variant="h6" component="div" sx={{ flexGrow: 1,color:'black' ,fontWeight:'700',letterSpacing:'2px'}}>
-            IMMS
+          <Link to="/" style={{textDecoration:'none',color:'black'}}>  IMMS </Link>
           </Typography>
-            <Button variant="contained"  sx={{margin:'10px' ,display:`${UpdateMenu?'block':'none'}` }}>Update Menu</Button>
-            <Button variant="contained"  sx={{margin:'10px' ,display:`${UpdateFee?'block':'none'}`}}>Update Fee</Button>
-            <Button variant="contained"  sx={{margin:'10px' ,display:`${Admin?'block':'none'}` }}>Admin</Button>
-            <Button variant="contained" sx={{margin:'10px' ,display:`${AccountIcon?'':'none'}`}}>
+         
+          <Link to="/updatemenu" style={{textDecoration:'none',color:'black'}}>   <Button variant="contained"  sx={{margin:'10px' ,display:`${UpdateMenu?'block':'none'}` }}>Update Menu</Button> </Link>    
+          <Link to="/updatefee" style={{textDecoration:'none',color:'black'}}>  <Button variant="contained"  sx={{margin:'10px' ,display:`${UpdateFee?'block':'none'}`}}>Update Fee</Button> </Link>    
+            <Link to="adminpage" style={{textDecoration:'none'}}><Button variant="contained"  sx={{margin:'10px' ,display:`${Admin?'block':'none'}` }}>Admin</Button></Link>
+            <Link to="/profilepage" style={{textDecoration:'none',color:'black'}}> <Button variant="contained" sx={{margin:'10px' ,display:`${AccountIcon?'':'none'}`}}>
                 <AccountCircleIcon/>
             </Button>
-            <Button variant="contained" sx={{margin:'10px', backgroundColor:'black' ,display:`${Login?'block':'none'}`}}><Link to='/login' style={{
+            </Link>
+            <Link to='/login' style={{
               color:'#fff',
               textDecoration:'none'
-            }}>Login</Link></Button>
-            <Button variant="contained" sx={{ backgroundColor:'black' ,display:`${SignUp?'block':'none'}`}}><Link to='/signup' style={{
+            }}>   <Button variant="contained" sx={{margin:'10px', backgroundColor:'black' ,display:`${Login?'block':'none'}`}}>Login</Button></Link>
+         <Link to='/signup' style={{
               color:'#fff',
               textDecoration:'none'
-            }}>Signup</Link></Button>
+            }}>   <Button variant="contained" sx={{ backgroundColor:'black' ,display:`${SignUp?'block':'none'}`}}>Signup</Button></Link>
         </Toolbar>
       </AppBar>
     </Box>
