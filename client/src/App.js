@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar'
 import { BrowserRouter,Routes,Route} from 'react-router-dom'
@@ -13,8 +14,8 @@ import {Home} from './components/Home/Home'
 import Subscribe from './components/Subscribe/Subscribe'
 import Footer from './components/Footer/Footer'
 import Buytoken from './components/BuyToken/Buytoken'
-import dotenv from 'dotenv'
-dotenv.config();
+import GoogleOAuth from './pages/GoogleOAuth';
+
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
         <Route path='/signup' element={<SignUp></SignUp>} ></Route>
         <Route path='/subscribe' element={<Subscribe/>} ></Route>
         <Route path='/buytoken' element={<Buytoken/>} ></Route>
-        <Route path='/login' element={<SignIn></SignIn>} ></Route>
+        <Route path='/login' element={<GoogleOAuth/>} ></Route>
         <Route path='/profilepage' element={<ProfilePage></ProfilePage>} ></Route>
         <Route path='/adminpage' element={<AdminPage></AdminPage>} ></Route>
         <Route path='/updatemenu' element={<MenuUpdate></MenuUpdate>} ></Route>
