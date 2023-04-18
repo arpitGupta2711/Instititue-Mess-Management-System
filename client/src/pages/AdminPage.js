@@ -155,7 +155,7 @@ const AdminPage = () => {
 
       {showQr && (
         <div>
-          <QrReader
+          {/* <QrReader
             onResult={(result, error) => {
               if (!!result) {
                 setData(result?.text);
@@ -167,7 +167,7 @@ const AdminPage = () => {
               }
             }}
             style={{ width: "50%" }}
-          />
+          /> */}
           <p>{data}</p>
         </div>
       )}
