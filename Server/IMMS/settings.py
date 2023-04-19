@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'social_django',
     'corsheaders',
     'allauth',
+    "django_cron",
 ]
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -191,4 +192,9 @@ CORS_ALLOWED_ORIGINS = [
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile',
+]
+
+CRON_CLASSES = [
+    "mess.cron.MyCronJob",
+    # ...
 ]
