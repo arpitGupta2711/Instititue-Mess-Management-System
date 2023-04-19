@@ -46,6 +46,11 @@ INSTALLED_APPS = [
     'social_django',
     'corsheaders',
     'allauth',
+    "dj_rest_auth",
+    "allauth.account",
+    "dj_rest_auth.registration",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 ]
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

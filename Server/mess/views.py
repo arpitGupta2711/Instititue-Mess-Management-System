@@ -30,7 +30,7 @@ from .helpers import GetDayTime
 # @csrf_exempt
 # def google_token(request):
 #     print (request.POST)
-#     if "code" not in request.POST:
+#     if "code" in request.POST:
 #         # print("hii")
 #         from rest_framework_simplejwt.settings import api_settings as jwt_settings
 #         from rest_framework_simplejwt.views import TokenRefreshView
@@ -50,6 +50,11 @@ from .helpers import GetDayTime
 #         return RefreshNuxtAuth.as_view()(request)
 #     else:
 #         return GoogleLogin.as_view()(request)
+
+# @api_view(['POST'])
+# def login_view(request):
+#     print(request.data)
+
 
 
 
