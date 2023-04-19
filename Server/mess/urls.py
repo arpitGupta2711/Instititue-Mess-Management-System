@@ -12,7 +12,7 @@ urlpatterns = [
     # path('check-gold-token/', checkGoldToken),
     path('auth/login/',login_view),
     path('scan/',scanQr),
-    path('view-token/',ShowTokens),
+    path('get-tokens/',ShowTokens),
     path('test/', test_view, name='test_view'),
     path('menu/',get_menu),
 ]
