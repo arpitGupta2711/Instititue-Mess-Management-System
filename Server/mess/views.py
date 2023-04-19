@@ -31,7 +31,7 @@ from django.contrib.auth.models import User
 # @csrf_exempt
 # def google_token(request):
 #     print (request.POST)
-#     if "code" not in request.POST:
+#     if "code" in request.POST:
 #         # print("hii")
 #         from rest_framework_simplejwt.settings import api_settings as jwt_settings
 #         from rest_framework_simplejwt.views import TokenRefreshView
@@ -52,6 +52,7 @@ from django.contrib.auth.models import User
 #     else:
 #         return GoogleLogin.as_view()(request)
 
+
 @api_view(['POST'])
 def login_view(request):
     print(request.data)
@@ -69,6 +70,8 @@ def login_view(request):
     return Response({'status':200})
 
 
+
+@login_required
 def test_view(request):
     return render(request, 'test.html')
 
