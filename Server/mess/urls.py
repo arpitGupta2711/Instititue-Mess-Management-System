@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *
 urlpatterns = [
+
+    path('auth/',login_view,name='login'),
     path('',home_view,name="home"),
     path('update-menu/<int:pk>/',update_menu),
     path('give-feedback/',giveFeedback),

@@ -43,3 +43,9 @@ class CheckGoldTokenSerializer(serializers.ModelSerializer):
         fields="__all__"
 
 
+class SilverTokenSerializers(serializers.ModelSerializer):
+    class Meta:
+        fields=['day','time']
+
+
+
