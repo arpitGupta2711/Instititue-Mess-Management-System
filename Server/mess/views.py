@@ -19,6 +19,7 @@ from .models import *
 from django.db.models.functions import Now
 from django.utils import timezone
 from .helpers import GetDayTime
+from django.contrib.auth.models import User
 
 # class GoogleLogin(SocialLoginView):
 #     authentication_classes = [] # disable authentication
@@ -30,7 +31,7 @@ from .helpers import GetDayTime
 # @csrf_exempt
 # def google_token(request):
 #     print (request.POST)
-#     if "code" not in request.POST:
+#     if "code" in request.POST:
 #         # print("hii")
 #         from rest_framework_simplejwt.settings import api_settings as jwt_settings
 #         from rest_framework_simplejwt.views import TokenRefreshView
@@ -50,6 +51,23 @@ from .helpers import GetDayTime
 #         return RefreshNuxtAuth.as_view()(request)
 #     else:
 #         return GoogleLogin.as_view()(request)
+
+
+@api_view(['POST'])
+def login_view(request):
+    print(request.data)
+    data=request.data
+    print(data['token']['email'])
+    username=data['token']['sub']
+    email=data['token']['email']
+    try:
+        print('user logged in')
+        user=User.objects.get(username=username)
+    except:
+        print('user created')
+        User.objects.create(username=username,password=email)
+    
+    return Response({'status':200})
 
 
 
@@ -274,6 +292,5 @@ def scanQr(request,*args, **kwargs):
         silverToken.delete()
         return Response({'status':200,'message':'Silver Token is Used'})
     
-
 
 

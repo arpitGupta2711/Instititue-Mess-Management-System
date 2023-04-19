@@ -20,7 +20,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/',include('drf_social_oauth2.urls',namespace='drf')),
+    # path('auth/',include('drf_social_oauth2.urls',namespace='drf')),
     # path('auth/', include('dj_rest_auth.urls')),
     # path('accounts/', include('allauth.urls')),
     # path('social-login/google/', GoogleLogin.as_view(), name='google_login'),
