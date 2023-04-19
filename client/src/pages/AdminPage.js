@@ -12,6 +12,8 @@ const AdminPage = () => {
   
   const dispatch = useDispatch();
   dispatch(manageAdminPageNavbar())
+  const user = localStorage.getItem('user');
+  
    
   return (
     <>
