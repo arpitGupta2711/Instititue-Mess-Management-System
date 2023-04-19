@@ -40,10 +40,7 @@ class Student(models.Model):
     LastName=models.CharField(max_length=50)
     email=models.EmailField(null=True,blank=True)
     rollNo=models.CharField(max_length=10,null=True,blank=True)
-    #field when true user has admin accesses
-    isAdmin=models.BooleanField(default=False)
-    #field for checking if he/she is a subscriber
-    isGoldMember=models.BooleanField(default=True)
+    type=models.CharField(max_length=20,null=True,blank=True)
     def __str__(self):
         rs=self.FirstName+'-'+self.LastName
         return rs
@@ -60,7 +57,7 @@ class Menu(models.Model):
     day = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
     time=models.CharField(max_length=1,choices=TIME)
     meal=models.TextField(null=True,blank=True)
-    price=models.IntegerField(null=True,blank=True)
+    # price=models.IntegerField(null=True,blank=True)
     #here UniqueConstraint are true means for particular day and time there can be a one menu
     UniqueConstraint(fields=['days','time'],name='timeSlot')
     def __str__(self):
@@ -71,8 +68,8 @@ class Menu(models.Model):
 #model representing details of user how has taken 45/90 tokens 
 class GoldToken(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    TokenCount=models.IntegerField()
-    time=models.CharField(max_length=1,choices=TIME, default='0')
+    TokenCount=models.IntegerField(default=0)
+    # time=models.CharField(max_length=1,choices=TIME, default='0')
     #Expiry will be generally 30 days from the day of buying tokens
     TokenExpiry=models.DateField()
     #minimum fee needed for user to continue his gold token 
@@ -83,10 +80,10 @@ class GoldToken(models.Model):
 class SilverToken(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     #day and time representing the timeslot they will be eating
-    day = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
-    time=models.CharField(max_length=1,choices=TIME)
-    used=models.BooleanField(default=False)
-    expiryTime=models.DateTimeField(null=True,blank=True)
+    # day = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
+    tokenTime=models.CharField(max_length=1,choices=TIME)
+    # used=models.BooleanField(default=False)
+    tokenDate=models.DateField(null=True,blank=True)
 
 
 #models representing the Feedback 
@@ -106,6 +103,7 @@ class NotEatingToday(models.Model):
     # day time combine will present a particular meal
     day = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
     time=models.CharField(max_length=1,choices=TIME)
+    
     # field representing is that user pulling out from that dish every week 
     isRecurring=models.BooleanField(default=False)
 
@@ -114,4 +112,10 @@ class GoldTokenPrice(models.Model):
     TokenCount=models.IntegerField()
     Price=models.FloatField()
     UniqueConstraint(fields=['TokenCount'],name='count')
+
+
+class Leave(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    start_date=models.DateField()
+    end_date=models.DateField()
 

@@ -6,7 +6,7 @@ from .models import Menu,Feedback,Student, SilverToken, GoldToken
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model=Menu
-        fields=['day','time','meal','price']
+        fields=['day','time','meal']
 
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:

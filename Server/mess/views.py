@@ -20,7 +20,7 @@ from django.db.models.functions import Now
 from django.utils import timezone
 from .helpers import GetDayTime
 from django.contrib.auth.models import User
-
+from datetime import date
 # class GoogleLogin(SocialLoginView):
 #     authentication_classes = [] # disable authentication
 #     adapter_class = GoogleOAuth2Adapter
@@ -60,14 +60,20 @@ def login_view(request):
     print(data['token']['email'])
     username=data['token']['sub']
     email=data['token']['email']
+    type=None
     try:
-        print('user logged in')
+        # print('user logged in')
         user=User.objects.get(username=username)
+        type=Student.objects.get(user=user).type
+
     except:
-        print('user created')
+        # print('user created')
         User.objects.create(username=username,password=email)
-    
-    return Response({'status':200})
+        user=User.objects.get(username=username)
+        type='Student'
+        Student.objects.create(user=user,FirstName=data['token']['given_name'],LastName=data['token']['family_name'],email=email)
+        GoldToken.objects.create(user=user)
+    return Response({'status':200,'type':type,'username':username})
 
 
 
@@ -75,20 +81,26 @@ def login_view(request):
 def test_view(request):
     return render(request, 'test.html')
 
+
+@api_view(['GET'])
+def get_menu(request,*args, **kwargs):
+    obj=Menu.objects.all()
+    serializer=MenuSerializer(obj,many=True)
+    return Response(serializer.data)
+
 @api_view(['GET'])
 def home_view(request,*args,**kwargs):
     obj=Menu.objects.all()
     serializer=MenuSerializer(obj,many=True)
     return Response(serializer.data)
 
-@api_view(['GET','POST'])
-def update_menu(request,pk,*args, **kwargs):
-    print(request.user)
-    obj=Menu.objects.get(id=pk)
+@api_view(['POST'])
+def update_menu(request,*args, **kwargs): 
+    obj=Menu.objects.get(day=request.data['day'],time=request.data['time'])
     if request.method == 'POST':
         # print(request.POST)
         print("data:", request.data)
-        serializer=MenuSerializer(obj,data=request.data,partial=True)
+        serializer=MenuSerializer(obj,data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -98,13 +110,12 @@ def update_menu(request,pk,*args, **kwargs):
         serializer=MenuSerializer(obj)
         return Response(serializer.data)
 
-
-
 @api_view(['POST'])
 def giveFeedback(request,*args, **kwargs):
+    user=User.objects.get(username=request.data['username'])
     serializer=FeedbackSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save(user=request.user)
+        serializer.save(user=user)
         return Response(serializer.data)
     else:
         return Response(serializer.errors)
@@ -160,9 +171,10 @@ def viewGoldToken(request,*args, **kwargs):
 
 @api_view(['GET'])
 def ShowTokens(request,*args, **kwargs):
-    obj=SilverToken.objects.filter(user=request.user,expiryTime__lt=Now())
-    obj1=GoldToken.objects.get(user=request.user)
-    print(obj,obj1)
+    user=User.objects.get(username=request.data['username'])
+    obj=SilverToken.objects.filter(user=user,tokenDate__lt=date.today())
+    obj1=GoldToken.objects.get(user=user)
+    # print(obj,obj1)
     tokens={}
     tokens['silver']=SilverTokenSerializers(obj,many=True).data
     tokens['gold']=obj1.TokenCount
@@ -203,7 +215,7 @@ def NumberofPeople(request,*args, **kwargs):
     cnt=0
     for user in users:
         try:
-            obj=SilverToken.objects.get(user=user,time=time,day=day)
+            obj=SilverToken.objects.get(user=user,tokenDate=date.today(),tokenTime=time)
             obj1=GoldToken.objects.get(user=user)
             if obj:
                 cnt+=1
@@ -274,23 +286,28 @@ def NumberofPeople(request,*args, **kwargs):
 
 @api_view(['POST'])
 def scanQr(request,*args, **kwargs):
-    rollNo=request.POST.get('rollNo',None)
-    if rollNo is None:
-        return Response({'status':400,'error':'Roll Number not found'})
-    user=User.objects.get(rollNo=rollNo.lower())
+    user=User.objects.get(username=request.data['username'])
     # user=student.user
     day,time=GetDayTime()
-    silverToken=SilverToken.objects.filter(user=user,day=day,time=time)
-    if not silverToken:
-        goldToken=GoldToken.objects.get(user=user)
-        if goldToken.TokenCount>0:
-            goldToken.TokenCount-=1
-            goldToken.save()
-            return Response({'status':200,'message':'Gold Token is Used'})
-        return Response({'status':400,'message':'You don\'t have any token'})
+    leave=Leave.objects.filter(user=user,start_date__lt=Now(),end_date__gt=Now())
+    if not leave:
+        noteating=NotEatingToday.objects.filter(date = date.today(),time=time)
+        if not noteating:
+            silverToken=SilverToken.objects.filter(user=user,tokenDate=date.today(),tokenTime=time)
+            if not silverToken:
+                goldToken=GoldToken.objects.get(user=user)
+                if goldToken.TokenCount>0:
+                    goldToken.TokenCount-=1
+                    goldToken.save()
+                    return Response({'status':200,'message':'Gold Token is Used'})
+                return Response({'status':400,'message':'You don\'t have any token'})
+            else:
+                silverToken.delete()
+                return Response({'status':200,'message':'Silver Token is Used'})
+        else:
+            return Response({'status':401,'message':'You filled for the leave'})
     else:
-        silverToken.delete()
-        return Response({'status':200,'message':'Silver Token is Used'})
+        return Response({'status':401,'message':'You filled for the leave'})
     
 
 
