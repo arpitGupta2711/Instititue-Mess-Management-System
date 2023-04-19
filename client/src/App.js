@@ -14,6 +14,7 @@ import {Home} from './components/Home/Home'
 import Subscribe from './components/Subscribe/Subscribe'
 import Footer from './components/Footer/Footer'
 import Buytoken from './components/BuyToken/Buytoken'
+import GoogleOAuth from './pages/GoogleOAuth.js';
 
 function App() {
   return (

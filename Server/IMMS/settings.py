@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,17 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.sites",
     'mess',
+    'drf_social_oauth2',
     "rest_framework",
     "rest_framework.authtoken",
-    "corsheaders",
-    "django.contrib.sites",
-    "dj_rest_auth",
-    "allauth",
-    "allauth.account",
-    "dj_rest_auth.registration",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
+    'oauth2_provider',
+    'social_django',
+    'corsheaders',
+    'allauth',
 ]
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -62,22 +60,29 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 # Disable email verification since this is just a test.
 # If you want to enable it, you'll need to configure django-allauth's email confirmation pages
-SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
-SOCIALACCOUNT_EMAIL_REQUIRED = False
 
-REST_USE_JWT = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
+# SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+# SOCIALACCOUNT_EMAIL_REQUIRED = False
+# SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+#         'hd': 'iiitdmj.ac.in'
+#     }
+
+# SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ['iiitdmj.ac.in']
+# REST_USE_JWT = True
 
 SITE_ID = 1
 
 from datetime import timedelta
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKENS': True, # IMPORTANT
-    'BLACKLIST_AFTER_ROTATION': True, # IMPORTANT
-    'UPDATE_LAST_LOGIN': True,
-}
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+#     'ROTATE_REFRESH_TOKENS': True, # IMPORTANT
+#     'BLACKLIST_AFTER_ROTATION': True, # IMPORTANT
+#     'UPDATE_LAST_LOGIN': True,
+# }
 
 
 MIDDLEWARE = [
@@ -93,13 +98,16 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 # Rest Settings
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
-        "dj_rest_auth.utils.JWTCookieAuthentication",
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    #     'drf_social_oauth2.authentication.SocialAuthentication',
+    # ),
 }
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+   'drf_social_oauth2.backends.DjangoOAuth2',
+   'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'IMMS.urls'
 
@@ -114,6 +122,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends', #add
+                'social_django.context_processors.login_redirect', #add
             ],
         },
     },
@@ -173,3 +183,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# AUTH_USER_MODEL = 'mess.User' 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",    
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+]
