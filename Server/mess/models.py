@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import UniqueConstraint
 from django.contrib.auth.models import User
 # from django.contrib.auth.models import AbstractUser
-
+from datetime import date
 
 DAYS_OF_WEEK = (
     ('0', 'Monday'),
@@ -101,11 +101,12 @@ class Feedback(models.Model):
 class NotEatingToday(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     # day time combine will present a particular meal
-    day = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
+    # day = models.CharField(max_length=1, choices=DAYS_OF_WEEK)
     time=models.CharField(max_length=1,choices=TIME)
-    
+    date=models.DateField()
+
     # field representing is that user pulling out from that dish every week 
-    isRecurring=models.BooleanField(default=False)
+    # isRecurring=models.BooleanField(default=False)
 
 
 class GoldTokenPrice(models.Model):
@@ -118,4 +119,17 @@ class Leave(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     start_date=models.DateField()
     end_date=models.DateField()
+
+
+class checkAlreadyEaten(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    date=models.DateField()
+    time=models.CharField(max_length=1,choices=TIME)
+
+class RegisteredStudent(models.Model):
+    date=models.DateField()
+    breakfast=models.IntegerField()
+    lunch=models.IntegerField()
+    dinner=models.IntegerField()
+    
 

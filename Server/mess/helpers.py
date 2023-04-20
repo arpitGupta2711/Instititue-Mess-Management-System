@@ -1,10 +1,14 @@
-from django.utils import timezone
+from datetime import datetime
+import pytz
+ist = pytz.timezone('Asia/Kolkata')
 def GetDayTime():
-    day=timezone.now().weekday()
-    time1=timezone.now().hour
+    x=datetime.now(ist)
+    day=x.weekday()
+    time1=x.hour
+    time=0
     if time1<11:
         time=0
-    elif time<3:
+    elif time<15:
         time=1
     else:
         time=2

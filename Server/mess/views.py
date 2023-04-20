@@ -21,6 +21,11 @@ from django.utils import timezone
 from .helpers import GetDayTime
 from django.contrib.auth.models import User
 from datetime import date
+from django.utils import timezone
+from datetime import datetime
+import pytz
+
+ist = pytz.timezone('Asia/Kolkata')
 # class GoogleLogin(SocialLoginView):
 #     authentication_classes = [] # disable authentication
 #     adapter_class = GoogleOAuth2Adapter
@@ -141,16 +146,16 @@ def viewSilverToken(request,*args, **kwargs):
         return Response({'status':200})
 
 
-@api_view(['GET','POST'])
-def viewSilverToken(request,*args, **kwargs):
-    if request.method=='POST':
-        day=request.data['day']
-        time=request.data['time']
-        obj=Menu.objects.get(day=day,time=time)
+# @api_view(['GET','POST'])
+# def viewSilverToken(request,*args, **kwargs):
+#     if request.method=='POST':
+#         day=request.data['day']
+#         time=request.data['time']
+#         obj=Menu.objects.get(day=day,time=time)
         
-        return Response({'order_value':obj.price})
-    else:
-        return Response({'status':200})
+#         return Response({'order_value':obj.price})
+#     else:
+#         return Response({'status':200})
     
 
 
@@ -169,10 +174,11 @@ def viewGoldToken(request,*args, **kwargs):
 
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 def ShowTokens(request,*args, **kwargs):
     user=User.objects.get(username=request.data['username'])
-    obj=SilverToken.objects.filter(user=user,tokenDate__lt=date.today())
+    x=datetime.now(ist).date()
+    obj=SilverToken.objects.filter(user=user,tokenDate__gte=x)
     obj1=GoldToken.objects.get(user=user)
     # print(obj,obj1)
     tokens={}
@@ -287,22 +293,24 @@ def NumberofPeople(request,*args, **kwargs):
 @api_view(['POST'])
 def scanQr(request,*args, **kwargs):
     user=User.objects.get(username=request.data['username'])
-    # user=student.user
     day,time=GetDayTime()
-    leave=Leave.objects.filter(user=user,start_date__lt=Now(),end_date__gt=Now())
+    x=datetime.now(ist).date()
+    y=checkAlreadyEaten.objects.filter(user=user,date=x,time=time)
+    if y:
+        return Response({'status':401,'message':'You have already eaten'})
+    leave=Leave.objects.filter(user=user,start_date__lte=x,end_date__gte=x)
     if not leave:
-        noteating=NotEatingToday.objects.filter(date = date.today(),time=time)
+        noteating=NotEatingToday.objects.filter(date = x,time=time)
         if not noteating:
-            silverToken=SilverToken.objects.filter(user=user,tokenDate=date.today(),tokenTime=time)
+            silverToken=SilverToken.objects.filter(user=user,tokenDate=x,tokenTime=time)
             if not silverToken:
                 goldToken=GoldToken.objects.get(user=user)
                 if goldToken.TokenCount>0:
-                    goldToken.TokenCount-=1
-                    goldToken.save()
+                    checkAlreadyEaten.objects.create(user=user,date=x,time=time)
                     return Response({'status':200,'message':'Gold Token is Used'})
                 return Response({'status':400,'message':'You don\'t have any token'})
             else:
-                silverToken.delete()
+                checkAlreadyEaten.objects.create(user=user,date=x,time=time)
                 return Response({'status':200,'message':'Silver Token is Used'})
         else:
             return Response({'status':401,'message':'You filled for the leave'})

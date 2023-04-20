@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'allauth',
     "django_cron",
+    'django_crontab',
 ]
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -98,15 +99,13 @@ MIDDLEWARE = [
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 # Rest Settings
-REST_FRAMEWORK = {
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-    #     'drf_social_oauth2.authentication.SocialAuthentication',
-    # ),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+#         'drf_social_oauth2.authentication.SocialAuthentication',
+#     ),
+# }
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-   'drf_social_oauth2.backends.DjangoOAuth2',
    'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -123,8 +122,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends', #add
-                'social_django.context_processors.login_redirect', #add
             ],
         },
     },
@@ -168,7 +165,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Calcutta'
 
 USE_I18N = True
 
@@ -189,12 +186,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",    
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-    'https://www.googleapis.com/auth/userinfo.email',
-    'https://www.googleapis.com/auth/userinfo.profile',
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+#     'https://www.googleapis.com/auth/userinfo.email',
+#     'https://www.googleapis.com/auth/userinfo.profile',
+# ]
+
+CRONJOBS = [
+    ('* * * * *', 'mess.cron.my_cron_job'),
 ]
 
-CRON_CLASSES = [
-    "mess.cron.MyCronJob",
-    # ...
-]
