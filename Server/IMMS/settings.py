@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'allauth',
     "django_cron",
-    'django_crontab',
+    # 'django_crontab',
 ]
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -194,7 +194,7 @@ CORS_ALLOWED_ORIGINS = [
 #     'https://www.googleapis.com/auth/userinfo.profile',
 # ]
 
-CRONJOBS = [
-    ('* * * * *', 'mess.cron.my_cron_job'),
-]
+# CRONJOBS = [
+#     ('* * * * *', 'mess.cron.my_cron_job'),
+# ]
 
