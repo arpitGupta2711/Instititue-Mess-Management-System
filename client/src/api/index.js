@@ -1,5 +1,5 @@
-import axios from 'axios'
-const API = axios.create({baseURL:'http://localhost:8000'})
+import axios from "axios";
+const API = axios.create({ baseURL: "http://localhost:8000" });
 // const url = "http://localhost:5000/posts";
 // API.interceptors.request.use((req)=>{
 //     if(localStorage.getItem('profile')){
@@ -19,9 +19,5 @@ const API = axios.create({baseURL:'http://localhost:8000'})
 // export const likePost = (id)=>API.patch(`/posts/${id}/likePost`)
 
 
-// export const signin = (formData)=>API.post('/user/signin',formData);
-// export const signup = (formData)=>API.post('/user/signup',formData);
-
-export const fetchMenu = ()=>API.get('/');
 export const scanQr = (data)=>API.post('/scan',data);
 export const viewTokens = (data)=>API.post('/get-tokens',data);
