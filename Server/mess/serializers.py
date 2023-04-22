@@ -16,19 +16,19 @@ class FeedbackSerializer(serializers.ModelSerializer):
 class ViewFeedbackSerializer(serializers.ModelSerializer):
     FirstName=serializers.SerializerMethodField()
     LastName=serializers.SerializerMethodField()
-    RollNo=serializers.SerializerMethodField()
+    # RollNo=serializers.SerializerMethodField()
     class Meta:
         model=Feedback
-        fields=['message','rating','FirstName','LastName','date','RollNo']
+        fields=['message','rating','FirstName','LastName','date']
     def get_FirstName(self,obj):
         student=Student.objects.get(user=obj.user)
         return student.FirstName
     def get_LastName(self,obj):
         student=Student.objects.get(user=obj.user)
         return student.LastName
-    def get_RollNo(self,obj):
-        student=Student.objects.get(user=obj.user)
-        return student.rollNo
+    # def get_RollNo(self,obj):
+    #     student=Student.objects.get(user=obj.user)
+    #     return student.rollNo
     
 
 class CheckSilverTokenSerializer(serializers.ModelSerializer):
@@ -45,7 +45,8 @@ class CheckGoldTokenSerializer(serializers.ModelSerializer):
 
 class SilverTokenSerializers(serializers.ModelSerializer):
     class Meta:
-        fields=['day','time']
+        model=SilverToken
+        fields=['tokenTime','tokenDate']
 
 
 
