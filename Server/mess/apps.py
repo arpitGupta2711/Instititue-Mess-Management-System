@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from django_crontab import crontab
+# from django_crontab import crontab
 
 class MessConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -16,7 +16,6 @@ class MessConfig(AppConfig):
         #         },
         #     },
         # }
-
 
 
 
