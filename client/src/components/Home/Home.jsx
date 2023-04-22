@@ -17,7 +17,7 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(manageHomePageNavbar());
-    dispatch(getMenu());
+    // dispatch(getMenu());
   }, []);
 
   return (

@@ -15,13 +15,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 // }; 
 
 
-export const getMenu     = createAsyncThunk(
-  //action type string
-  'posts/getPosts',
-  // callback function
-  async (thunkAPI) => {
-    const res = await api.fetchMenu().then(
-    (data) => data.json()
-  )
-  return res
-})
+// export const getMenu     = createAsyncThunk(
+//   //action type string
+//   'posts/getPosts',
+//   // callback function
+//   async (thunkAPI) => {
+//     const res = await api.fetchMenu().then(
+//     (data) => data.json()
+//   )
+//   return res
+// })
