@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'social_django',
     'corsheaders',
     'allauth',
-    "django_cron",
+    # "django_cron",
     # 'django_crontab',
 ]
 SOCIALACCOUNT_PROVIDERS = {

@@ -19,6 +19,8 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 import QRCode from "react-qr-code";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useDispatch } from "react-redux";
+import { manageProfilePageNavbar } from "../features/manageNavSlice";
 const item = [
   {
     img: "https://unsplash.com/photos/1Su3t-fqNxY",
@@ -29,13 +31,16 @@ const ProfilePage = () => {
   const [showQr, setShowQr] = useState(false);
   const [value, setValue] = useState("");
 
-  const user = JSON.parse(localStorage.getItem('user'));
-  if(value===""){
-    const use=user.userId;
-    const a = use.toString()
-    console.log('here ',typeof(a));
-    setValue(a)
-  }
+  const dispatch = useDispatch();
+  dispatch(manageProfilePageNavbar());
+
+  // const user = JSON.parse(localStorage.getItem('user'));
+  // if(value===""){
+  //   const use=user.userId;
+  //   const a = use.toString()
+  //   console.log('here ',typeof(a));
+  //   setValue(a)
+  // }
   return (
     <>
       <DashboardNavbar></DashboardNavbar>
@@ -64,13 +69,15 @@ const ProfilePage = () => {
               e.stopPropagation();
             }}
           >
-            {value && <QRCode title="Your account" 
-             size={256}
-             style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-             viewBox={`0 0 256 256`}
-            
-            
-            value={value} />}
+            {value && (
+              <QRCode
+                title="Your account"
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                viewBox={`0 0 256 256`}
+                value={value}
+              />
+            )}
           </div>
         </div>
       )}
