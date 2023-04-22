@@ -14,9 +14,7 @@ const baseURL = "http://localhost:8000";
 const handleGoogleLogin = (response, navigate) => {
   // console.log(response);
 
-
   const result = jwt_decode(response.credential);
-
 
   // console.log(response);
   axios
@@ -29,7 +27,13 @@ const handleGoogleLogin = (response, navigate) => {
     })
     .then((res) => {
       console.log("here is data ", res);
-      const user = { name: "Arpit Gupta", email: "20bcs041@iiitdmj.ac.in" ,type:'admin'}
+      const user = {
+        name: "Arpit Gupta",
+        username: "104965000415928072233",
+        email: "20bcs041@iiitdmj.ac.in",
+        type: "admin",
+      };
+
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     })

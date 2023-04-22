@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { manageAdminPageNavbar } from "../features/manageNavSlice";
 import { useDispatch } from "react-redux";
-import { viewTokens } from "../api";
+
 import {
   Grid,
   Paper,
@@ -22,7 +22,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const AdminPage = () => {
-  const [tokens,setTokens]=useState([]);
   console.log("i am in adminPage");
   const data = useSelector((state) => state.qr);
   const dispatch = useDispatch();
@@ -30,12 +29,6 @@ const AdminPage = () => {
   const user = localStorage.getItem("user");
 
   console.log(data);
-  useEffect(() => {
-    if (user&&!tokens) {
-      var tokens = viewTokens(user.id);
-      setTokens(tokens);
-    }
-  }, []);
 
   return (
     <>
