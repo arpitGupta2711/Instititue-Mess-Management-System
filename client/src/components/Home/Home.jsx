@@ -13,10 +13,11 @@ import { Link } from "react-router-dom";
 import { getMenu } from "../../actions/menu.js";
 export const Home = () => {
   const dispatch = useDispatch();
-  dispatch(manageHomePageNavbar());
+ 
 
   useEffect(() => {
-    dispatch(getMenu());
+    dispatch(manageHomePageNavbar());
+    // dispatch(getMenu());
   }, []);
 
   return (

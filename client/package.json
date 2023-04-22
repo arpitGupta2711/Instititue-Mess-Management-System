@@ -20,6 +20,8 @@
     "react-google-login": "^5.2.2",
     "react-materialui-testimonials-transition": "^1.0.1",
     "react-qr-code": "^2.0.11",
+    "react-qr-reader": "^3.0.0-beta-1",
+    "react-qrcode-scanner": "^1.0.5",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",

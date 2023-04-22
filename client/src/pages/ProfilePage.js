@@ -28,6 +28,7 @@ const item = [
   },
 ];
 const ProfilePage = () => {
+  console.log(' i am in profile page');
   const [showQr, setShowQr] = useState(false);
   const [value, setValue] = useState("");
 

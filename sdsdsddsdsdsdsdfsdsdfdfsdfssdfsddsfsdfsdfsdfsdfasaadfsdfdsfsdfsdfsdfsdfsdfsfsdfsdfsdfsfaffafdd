@@ -1,0 +1,41 @@
+[33m6e9e645[m[33m ([m[1;36mHEAD -> [m[1;32msqueezerag[m[33m)[m corrected login
+[33m7caf480[m[33m ([m[1;32mmain[m[33m)[m Merge pull request #8 from arpitGupta2711/Arpit
+[33m1fcab45[m[33m ([m[1;31morigin/Arpit[m[33m)[m new changes
+[33me36ff1a[m changes in models
+[33m14d2d26[m Merge pull request #7 from arpitGupta2711/Arpit
+[33m57061d2[m Merge branch 'main' of https://github.com/arpitGupta2711/Instititue-Mess-Management-System into Arpit
+[33m9aeccd3[m merge
+[33m30f8bcb[m setup redux for menu, api and actions
+[33m958d603[m fixed merge conflict
+[33mbaf811c[m Merge pull request #6 from arpitGupta2711/Arpit
+[33m49c2d88[m some changes
+[33m8c9afc0[m added login
+[33mf9c2780[m reverting
+[33m135a3af[m revert
+[33m26a1252[m Merge pull request #5 from arpitGupta2711/Arpit
+[33mda8e0b9[m corrected erros
+[33m0d9cadf[m corrected error for dotenv
+[33m0b9eb0d[m Merge branch 'main' of github.com:arpitGupta2711/Instititue-Mess-Management-System
+[33m6e47154[m Merge pull request #4 from arpitGupta2711/Arpit
+[33m7b9abc1[m changes in setting.py
+[33maee20bd[m added google oauth in backend
+[33m430fdb7[m Added google oauth and qr reader and qr generator
+[33mc6b5b9a[m i don't know
+[33m2fc4895[m Merge pull request #3 from arpitGupta2711/Arpit
+[33m0ad313f[m Properly Link buttons
+[33m77a1563[m Merge pull request #1 from Anunaya07/dev
+[33mb46067a[m Merge pull request #2 from arpitGupta2711/Abhishek
+[33mda9f718[m[33m ([m[1;31morigin/Abhishek[m[33m, [m[1;32mAbhishek[m[33m)[m Merged
+[33m9020a35[m added several pages
+[33me139e05[m Home,footer, subscribe
+[33m6dc9fba[m Merge branch 'arpitGupta2711:main' into dev
+[33md8574fa[m added token check
+[33mdf99fb8[m Navbar added
+[33m66dc8ee[m Created react app
+[33m5e39346[m added Requirements.txt
+[33m931a91e[m Added Feedback and update Menu Support
+[33m57486c5[m Intial Setup for IMMS backend
+[33me0300a7[m Delete imms directory
+[33me783acb[m testing
+[33md6c1523[m Initial commmit
+[33md7321c9[m Create README.md

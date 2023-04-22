@@ -16,3 +16,4 @@ urlpatterns = [
     path('test/', test_view, name='test_view'),
     path('menu/',get_menu),
 ]
+ 
