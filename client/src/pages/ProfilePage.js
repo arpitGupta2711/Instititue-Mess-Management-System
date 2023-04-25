@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardNavbar from "../components/dashboard-navbar";
 import {
   Box,
@@ -21,20 +21,31 @@ import QRCode from "react-qr-code";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useDispatch } from "react-redux";
 import { manageProfilePageNavbar } from "../features/manageNavSlice";
+import { viewTokens } from "../actions/tokens";
 const item = [
   {
     img: "https://unsplash.com/photos/1Su3t-fqNxY",
     title: "evening",
   },
 ];
+
 const ProfilePage = () => {
-  console.log(' i am in profile page');
+  console.log(" i am in profile page");
   const [showQr, setShowQr] = useState(false);
   const [value, setValue] = useState("");
-
+  const [tokensA, setTokens] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   dispatch(manageProfilePageNavbar());
-
+  useEffect(() => {
+    if (user) {
+      const tokens = viewTokens({ username: user.username }).then((value) => {
+        console.log("value", value);
+        console.log("valuedata", value.data);
+        setTokens(value.data);
+      });
+    }
+  }, []);
   // const user = JSON.parse(localStorage.getItem('user'));
   // if(value===""){
   //   const use=user.userId;
@@ -44,7 +55,7 @@ const ProfilePage = () => {
   // }
   return (
     <>
-      <DashboardNavbar></DashboardNavbar>
+      <DashboardNavbar data={tokensA}></DashboardNavbar>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Button
           sx={{ width: "40%" }}

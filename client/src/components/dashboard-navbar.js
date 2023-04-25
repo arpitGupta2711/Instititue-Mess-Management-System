@@ -22,7 +22,8 @@ import { AccountPopover } from "./account-popover";
 import { SilverToken } from "./dashboard/silverToken";
 import { GoldToken } from "./dashboard/goldToken";
 
-const DashboardNavbar = () => {
+const DashboardNavbar = ({ data }) => {
+  console.log("data in prop", data);
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
   const settingsRef = useRef(null);
   return (
@@ -135,10 +136,10 @@ const DashboardNavbar = () => {
         <Container>
           <Grid container spacing={5} sx={{ justifyContent: "center" }}>
             <Grid item lg={6} sm={6} xl={3} xs={12}>
-              <SilverToken />
+              <SilverToken token={data.silver} />
             </Grid>
             <Grid item lg={6} sm={6} xl={3} xs={12}>
-              <GoldToken />
+              <GoldToken token={data.gold} />
             </Grid>
           </Grid>
         </Container>

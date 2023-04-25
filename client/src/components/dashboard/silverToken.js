@@ -17,7 +17,8 @@ import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 import { Link } from "react-router-dom";
 import { Tokens } from "../../pages/Tokens";
 
-export const SilverToken = () => {
+export const SilverToken = ({ token }) => {
+  console.log("silver", token);
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardMedia
@@ -50,7 +51,7 @@ export const SilverToken = () => {
           padding: "17px",
         }}
       >
-        <Link to="/silvertokens">
+        <Link to="/silvertokens" state={token}>
           <Button variant="contained" size="large">
             Tokens
           </Button>

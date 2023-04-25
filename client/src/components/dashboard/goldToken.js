@@ -15,7 +15,8 @@ import MoneyIcon from "@mui/icons-material/Money";
 import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 
-export const GoldToken = () => {
+export const GoldToken = ({ token }) => {
+  console.log("gold", token);
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardMedia
@@ -49,7 +50,7 @@ export const GoldToken = () => {
             total token
           </Typography>
           <Typography color="textPrimary" variant="h4">
-            0
+            {token}
           </Typography>
         </Grid>
       </CardContent>
