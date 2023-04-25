@@ -8,6 +8,7 @@ import React, {
 import { QrReader } from "react-qr-reader";
 import { useDispatch } from "react-redux";
 import { scanQRCode } from "../../actions/qr";
+import { useNavigate } from "react-router-dom";
 
 export const QRScanner = forwardRef((props, ref) => {
 
@@ -17,6 +18,7 @@ console.log('hi am in QRSCAner');
   const [result, setResult] = useState("");
   const inputElement = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // const qrReaderRef = useRef(null);
 
   // var playPromise = video.play();
@@ -44,16 +46,22 @@ console.log('hi am in QRSCAner');
   //   }
 
   // },[])
-  useEffect(() => {
-    if (result) {
-     scanQRCode(result)
-    }
-  }, [result, dispatch]);
+  // useEffect(() => {
+  //   if (result) {
+  //     console.log('result in useeffect',result);
+     
+  //   }
+  // }, [result, dispatch]);
 
-
+const closeScanner =()=>{
+  // window.location.reload();
+  setShowScanner(false)
+} 
   const handleScan = (data) => {
     if (data) {
+      console.log('result in handle is ',data.text)
       setResult(data.text);
+      scanQRCode(data.text)
     }
   };
 
@@ -68,13 +76,13 @@ console.log('hi am in QRSCAner');
   return (
     <div>
       {showScanner ? (
-        <div>
-          <button onClick={props.closeScanner}>Close Scanner</button>
+        <div style={{width:'50%'}}>
+          <button onClick={closeScanner}>Close Scanner</button>
           <QrReader
             delay={300}
             onError={handleError}
             onResult={handleScan}
-            style={{ width: "100%" }}
+            style={{ width: "50%",height:'40%' }}
             videoId="qr"
           />
         </div>

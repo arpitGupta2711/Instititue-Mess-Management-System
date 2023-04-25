@@ -296,26 +296,28 @@ def scanQr(request,*args, **kwargs):
     day,time=GetDayTime()
     x=datetime.now(ist).date()
     y=checkAlreadyEaten.objects.filter(user=user,date=x,time=time)
-    if y:
-        return Response({'status':401,'message':'You have already eaten'})
-    leave=Leave.objects.filter(user=user,start_date__lte=x,end_date__gte=x)
-    if not leave:
-        noteating=NotEatingToday.objects.filter(date = x,time=time)
-        if not noteating:
-            silverToken=SilverToken.objects.filter(user=user,tokenDate=x,tokenTime=time)
-            if not silverToken:
-                goldToken=GoldToken.objects.get(user=user)
-                if goldToken.TokenCount>0:
+    print(y)
+    if not y:
+        leave=Leave.objects.filter(user=user,start_date__lte=x,end_date__gte=x)
+        if not leave:
+            noteating=NotEatingToday.objects.filter(date = x,time=time)
+            if not noteating:
+                silverToken=SilverToken.objects.filter(user=user,tokenDate=x,tokenTime=time)
+                if not silverToken:
+                    goldToken=GoldToken.objects.get(user=user)
+                    if goldToken.TokenCount>0:
+                        checkAlreadyEaten.objects.create(user=user,date=x,time=time)
+                        return Response({'status':200,'message':'Gold Token is Used'})
+                    return Response({'status':400,'message':'You don\'t have any token'})
+                else:
                     checkAlreadyEaten.objects.create(user=user,date=x,time=time)
-                    return Response({'status':200,'message':'Gold Token is Used'})
-                return Response({'status':400,'message':'You don\'t have any token'})
+                    return Response({'status':200,'message':'Silver Token is Used'})
             else:
-                checkAlreadyEaten.objects.create(user=user,date=x,time=time)
-                return Response({'status':200,'message':'Silver Token is Used'})
+                return Response({'status':401,'message':'You filled for the leave'})
         else:
             return Response({'status':401,'message':'You filled for the leave'})
     else:
-        return Response({'status':401,'message':'You filled for the leave'})
-    
+        print("hiiii")
+        return Response({'status':401,'message':'You have already eaten'})
 
 
