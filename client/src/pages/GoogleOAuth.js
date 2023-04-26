@@ -18,7 +18,7 @@ const handleGoogleLogin = (response, navigate) => {
 
   // console.log(response);
   axios
-    .post(`${baseURL}/auth/login/`, {
+    .post(`https://imms-backend1.onrender.com/auth/login/`, {
       token: result,
       backend: "google-oauth2",
       grant_type: "convert_token",

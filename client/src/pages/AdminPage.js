@@ -146,9 +146,17 @@ const AdminPage = () => {
             </Grid>
           </Paper>
         </Box>
-        <Link to="/qrScanner">
-          <Button>Open QR Scanner</Button>
-        </Link>
+        <Box
+          sx={{
+            margin: 3,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Link to="/qrScanner">
+            <Button variant="contained">Open QR Scanner</Button>
+          </Link>
+        </Box>
       </Container>
     </>
   );
