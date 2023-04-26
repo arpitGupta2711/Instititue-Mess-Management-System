@@ -1,5 +1,4 @@
 import * as api from "../api";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const viewTokens = async (data) => {
   try {

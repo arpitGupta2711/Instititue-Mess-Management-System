@@ -9,11 +9,11 @@ import { QrReader } from "react-qr-reader";
 import { useDispatch } from "react-redux";
 import { scanQRCode } from "../../actions/qr";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Button, Box, Grid } from "@mui/material";
 
 export const QRScanner = forwardRef((props, ref) => {
-
-
-console.log('hi am in QRSCAner');
+  console.log("hi am in QRSCAner");
   const [showScanner, setShowScanner] = useState(false);
   const [result, setResult] = useState("");
   const inputElement = useRef();
@@ -49,19 +49,19 @@ console.log('hi am in QRSCAner');
   // useEffect(() => {
   //   if (result) {
   //     console.log('result in useeffect',result);
-     
+
   //   }
   // }, [result, dispatch]);
 
-const closeScanner =()=>{
-  // window.location.reload();
-  setShowScanner(false)
-} 
+  const closeScanner = () => {
+    // window.location.reload();
+    setShowScanner(false);
+  };
   const handleScan = (data) => {
     if (data) {
-      console.log('result in handle is ',data.text)
+      console.log("result in handle is ", data.text);
       setResult(data.text);
-      scanQRCode(data.text)
+      scanQRCode(data.text);
     }
   };
 
@@ -76,18 +76,61 @@ const closeScanner =()=>{
   return (
     <div>
       {showScanner ? (
-        <div style={{width:'50%'}}>
-          <button onClick={closeScanner}>Close Scanner</button>
-          <QrReader
-            delay={300}
-            onError={handleError}
-            onResult={handleScan}
-            style={{ width: "50%",height:'40%' }}
-            videoId="qr"
-          />
-        </div>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Grid
+            item
+            sx={{
+              margin: 3,
+              flex: 1,
+              justifyContent: "center",
+              backgroundColor: "coral",
+            }}
+          >
+            <Button variant="contained" onClick={closeScanner} color="error">
+              Close Scanner
+            </Button>
+          </Grid>
+          <Grid
+            item
+            sx={{
+              // margin: 3,
+              // justifyContent: "center",
+              height: "400px",
+              width: "400px",
+            }}
+          >
+            <QrReader
+              delay={300}
+              onError={handleError}
+              onResult={handleScan}
+              videoId="qr"
+            />
+          </Grid>
+        </Grid>
       ) : (
-        <button onClick={handleOpenScanner}>Open Scanner</button>
+        <Box
+          sx={{
+            margin: 3,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            variant="contained"
+            onClick={handleOpenScanner}
+            color="success"
+          >
+            Open QR Scanner
+          </Button>
+        </Box>
+        // <button onClick={handleOpenScanner}>Open Scanner</button>
       )}
     </div>
   );
