@@ -10,7 +10,7 @@ export const scanQRCode = async (dataf) => {
       alert("User is Permitted");
       // return data;
     } else {
-      alert("Not registered for this meal");
+      alert(data.data.message);
     }
   } catch (err) {
     alert(err.message);

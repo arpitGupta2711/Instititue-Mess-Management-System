@@ -28,7 +28,7 @@ import { display } from "@mui/system";
 const AdminPage = () => {
   const dispatch = useDispatch();
   dispatch(manageAdminPageNavbar());
-  const user = localStorage.getItem("user");
+  // const user = localStorage.getItem("user");
 
   return (
     <>
@@ -212,7 +212,9 @@ const AdminPage = () => {
           </Paper>
         </Box>
       </Container>
-     
+    
+
+    
 
       <Box
         sx={{

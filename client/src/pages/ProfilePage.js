@@ -39,11 +39,12 @@ const ProfilePage = () => {
   dispatch(manageProfilePageNavbar());
   useEffect(() => {
     if (user) {
-      const tokens = viewTokens({ username: user.username }).then((value) => {
-        console.log("value", value);
-        console.log("valuedata", value.data);
-        setTokens(value.data);
-      });
+      // const tokens = viewTokens({ username: user.username }).then((value) => {
+      //   console.log("value", value);
+      //   console.log("valuedata", value.data);
+      //   setTokens(value.data);
+      // });
+       setValue(user.username);
     }
   }, []);
   // const user = JSON.parse(localStorage.getItem('user'));
@@ -55,7 +56,9 @@ const ProfilePage = () => {
   // }
   return (
     <>
-      <DashboardNavbar data={tokensA}></DashboardNavbar>
+      <DashboardNavbar data={tokensA} name={user?.name} email={user?.email}>
+
+      </DashboardNavbar>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Button
           sx={{ width: "40%" }}
@@ -81,15 +84,15 @@ const ProfilePage = () => {
               e.stopPropagation();
             }}
           >
-            {value && (
+            {value?(
               <QRCode
-                title="Your account"
+                title={value}
                 size={256}
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                 viewBox={`0 0 256 256`}
                 value={value}
               />
-            )}
+            ):'no token'}
           </div>
         </div>
       )}
