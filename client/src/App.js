@@ -17,6 +17,7 @@ import Buytoken from "./components/BuyToken/Buytoken";
 import GoogleOAuth from "./pages/GoogleOAuth.js";
 import { QRScanner } from "./components/QRScanner/QRScanner";
 import { Tokens } from "./pages/Tokens";
+import ViewMenu from "./pages/viewMenu";
 
 function App() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
+          <Route path="/viewmenu" element={<ViewMenu />}></Route>
           <Route path="/qrScanner" element={<QRScanner />}></Route>
           <Route path="/silvertokens" element={<Tokens />}></Route>
 
