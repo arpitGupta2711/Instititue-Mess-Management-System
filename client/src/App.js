@@ -67,3 +67,11 @@ function App() {
 }
 
 export default App;
+
+
+
+//  <Slider {...settings}>
+//    {rows.map((item) => (
+//      <div className="imgContent "></div>
+//    ))}
+//  </Slider>;
