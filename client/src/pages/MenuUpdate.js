@@ -28,13 +28,13 @@ function createData(day, breakfast, lunch, dinner) {
 }
 
 const rows = [
-  createData("Monday", 237, 9.0, 37),
-  createData("Tuesday", 262, 16.0, 24),
-  createData("Wednesday", 305, 3.7, 67),
-  createData("Thursday", 356, 16.0, 49),
-  createData("Friday", 356, 16.0, 49),
-  createData("Saturday", 356, 16.0, 49),
-  createData("Sunday", 159, 6.0, 24),
+  // createData("Monday", 237, 9.0, 37),
+  // createData("Tuesday", 262, 16.0, 24),
+  // createData("Wednesday", 305, 3.7, 67),
+  // createData("Thursday", 356, 16.0, 49),
+  // createData("Friday", 356, 16.0, 49),
+  // createData("Saturday", 356, 16.0, 49),
+  // createData("Sunday", 159, 6.0, 24),
 ];
 
 export default function MenuUpdate() {
@@ -44,7 +44,8 @@ export default function MenuUpdate() {
   const [mealTime, setMealTime] = useState("breakfast");
   const [meal, setMeal] = useState("");
   const [click, setClick] = useState(false);
-  const [menu, setMenu] = useState();
+  const [menu, setMenu] = useState([]);
+  const [finalMenu, setFinalMenu] = useState([]);
 
   const days = [
     "monday",
@@ -56,23 +57,50 @@ export default function MenuUpdate() {
     "sunday",
   ];
 
+  console.log("here is finalmenu length", finalMenu.length);
+  // if (finalMenu.length > 0) {
+  //   console.log(finalMenu);
+  //   finalMenu.forEach((d, index) => {
+  //     rows.push(createData(index, d[0], d[1], d[2]));
+  //   });
+  // }
+
   const time = ["breakfast", "lunch", "dinner"];
 
-  let index = days.findIndex((day) => day === mealDay);
-  console.log(
-    index,
-    time.findIndex((time) => time === mealTime)
-  );
+  // let index = days.findIndex((day) => day === mealDay);
 
-  axios
-    .get("http://localhost:8000/menu/")
-    .then((res) => {
+  useEffect(() => {
+    axios.get("http://localhost:8000/menu/").then((res) => {
       console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
+      var data = new Array();
+      for (let i = 0; i < 7; i++) {
+        data[i] = new Array();
+      }
+      // menu.forEach((item, index) => {
+      //   console.log(item, index);
+      //   data[parseInt(item.day)][parseInt(item.time)] = item.meal;
+      // });
+      for (let i = 0; i < 21; i++) {
+        if (
+          res.data[i] &&
+          res.data[i].day &&
+          res.data[i].time &&
+          res.data[i].meal
+        )
+          data[parseInt(res.data[i].day)][parseInt(res.data[i].time)] =
+            res.data[i].meal;
+      }
+
+      data.forEach((d, index) => {
+        if (rows.length !== 7) {
+          rows.push(createData(days[index].toUpperCase(), d[0], d[1], d[2]));
+        }
+      });
+
+      console.log("setted final menu", rows);
+      setFinalMenu(data);
     });
-  // http://localhost:8000/menu/
+  }, []);
 
   useEffect(() => {
     if (click) {
@@ -83,6 +111,8 @@ export default function MenuUpdate() {
           meal: meal,
         })
         .then((res) => {
+          window.location.reload();
+          window.scrollTo(0, 0);
           console.log("updated menu is here", res);
         })
         .catch((err) => {
@@ -91,10 +121,11 @@ export default function MenuUpdate() {
       setClick(false);
     }
   }, [click]);
+  // http://localhost:8000/menu/
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    // const data = new FormData(event.currentTarget);
     console.log(mealDay);
     console.log(mealTime);
     console.log(meal);
@@ -151,14 +182,15 @@ export default function MenuUpdate() {
               </TableHead>
 
               <TableBody>
-                {rows.map((row) => (
+                {rows.map((row, idx) => (
                   <TableRow
-                    key={row.day}
+                    key={idx}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
                       {row.day}
                     </TableCell>
+
                     <TableCell align="right">{row.breakfast}</TableCell>
                     <TableCell align="right">{row.lunch}</TableCell>
                     <TableCell align="right">{row.dinner}</TableCell>
