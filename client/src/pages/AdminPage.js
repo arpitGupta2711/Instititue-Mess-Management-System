@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Link } from "react-router-dom";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { manageAdminPageNavbar } from "../features/manageNavSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -26,31 +26,32 @@ import {
 import img from "../image/food.jpg";
 import { display } from "@mui/system";
 
+
+
 const AdminPage = () => {
   const dispatch = useDispatch();
   dispatch(manageAdminPageNavbar());
+  const [register, setRegister] = useState({});
+  const [feedbacks, setFeedbacks] = useState({});
   // const user = localStorage.getItem("user");
 
 
+  useEffect(() => {
+    axios.get("http://localhost:8000/get-registered/").then((res) => {
+      console.log(res);
+      setRegister(res.data);
+    });
+    
+    axios.get("http://localhost:8000/view-feedback/").then((res) => {
+      console.log('feedbacks',res);
+      setFeedbacks(res.data);
+    }).catch((err)=>{
+      console.log(err);
+    })
 
-//   {
-//     "today": {
-//         "0": 5,
-//         "1": 5,
-//         "2": 5
-//     },
-//     "tommorow": {
-//         "0": 5,
-//         "1": 5,
-//         "2": 5
-//     }
-// }
 
-useEffect(() => {
-  axios.get("http://localhost:8000/menu/").then((res) => {
-
-  });
-}, []);
+  
+  }, []);
 
   return (
     <>
@@ -69,7 +70,8 @@ useEffect(() => {
                   </Typography>
                 </Container>
               </Grid>
-              {/* Meal Data */}
+
+              {/*Todays registered meal */}
               <Grid item xs={12}>
                 <Paper
                   style={{
@@ -91,7 +93,7 @@ useEffect(() => {
                       sx={{ typography: { lg: "h4", xs: "h4" } }}
                       color="text.secondary"
                     >
-                      Today's Meal Number Registerd
+                     Meals Registered for Today
                     </Typography>
                   </Box>
 
@@ -112,7 +114,7 @@ useEffect(() => {
                               BreakFast
                             </Typography>
                             <Typography variant="h6" color="text.secondary">
-                              500
+                              {register?.today && register?.today["0"]}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -129,7 +131,7 @@ useEffect(() => {
                               Lunch
                             </Typography>
                             <Typography variant="h6" color="text.secondary">
-                              750
+                              {register?.today && register?.today["0"]}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -146,7 +148,7 @@ useEffect(() => {
                               Dinner
                             </Typography>
                             <Typography variant="h6" color="text.secondary">
-                              900
+                              {register?.today && register?.today["0"]}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -156,6 +158,7 @@ useEffect(() => {
                 </Paper>
               </Grid>
 
+              {/* Tommorow's Registered Meals */}
 
               <Grid item xs={12}>
                 <Paper
@@ -178,7 +181,7 @@ useEffect(() => {
                       sx={{ typography: { lg: "h4", xs: "h4" } }}
                       color="text.secondary"
                     >
-                      Today's Meal Number Registerd
+                      Meals Registered for Tommorow
                     </Typography>
                   </Box>
 
@@ -199,7 +202,7 @@ useEffect(() => {
                               BreakFast
                             </Typography>
                             <Typography variant="h6" color="text.secondary">
-                              500
+                              {register?.tommorow && register?.tommorow["0"]}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -216,7 +219,7 @@ useEffect(() => {
                               Lunch
                             </Typography>
                             <Typography variant="h6" color="text.secondary">
-                              750
+                              {register?.tommorow && register?.tommorow["0"]}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -233,7 +236,7 @@ useEffect(() => {
                               Dinner
                             </Typography>
                             <Typography variant="h6" color="text.secondary">
-                              900
+                              {register?.tommorow && register?.tommorow["0"]}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -243,8 +246,7 @@ useEffect(() => {
                 </Paper>
               </Grid>
 
-
-
+              {/* Feedbacks */}
               <Grid item xs={12}>
                 <Paper
                   style={{
@@ -263,7 +265,7 @@ useEffect(() => {
                     spacing={{ xs: 1, sm: 2, md: 4 }}
                   >
                     <Typography
-                      sx={{ typography: { lg: "h4", xs: "h4" } }}
+                      sx={{ typography: { lg: "h4", xs: "h4" } ,margin:'10px'}}
                       color="text.secondary"
                     >
                       Feedbacks
@@ -271,21 +273,23 @@ useEffect(() => {
 
                     <Container maxWidth="lg">
                       <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <Table  aria-label="simple table">
                           <TableHead>
                             <TableRow>
                               <TableCell
+                              align="center"
                                 sx={{ typography: { lg: "h5", xs: "h6" } }}
                               >
                                 S.no
                               </TableCell>
                               <TableCell
+                              align="center"
                                 sx={{ typography: { lg: "h5", xs: "h6" } }}
                               >
                                 Feedback
                               </TableCell>
                               <TableCell
-                                align="left"
+                                align="center"
                                 sx={{ typography: { lg: "h5", xs: "h6" } }}
                               >
                                 Rating
@@ -294,24 +298,26 @@ useEffect(() => {
                           </TableHead>
 
                           <TableBody>
-                            {/* {rows.map((row) => (
+                             {feedbacks.length&&feedbacks.map((row,index) => (
                         <TableRow
-                        key={row.day}
+                        key={index}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                        <TableCell component="th" scope="row">
-                            {row.day}
+                        <TableCell align="center" component="th" scope="row">
+                            {index+1}
                         </TableCell>
-                        <TableCell align="right">{row.breakfast}</TableCell>
-                        <TableCell align="right">{row.lunch}</TableCell>
-                        <TableCell align="right">{row.dinner}</TableCell>
+                        <TableCell align="center">{row.message}</TableCell>
+                        <TableCell align="center">{row.rating}</TableCell>
+                     
                         </TableRow>
-                    // ))} */}
-                            <TableCell align="left">1.</TableCell>
+                   ))} 
+
+
+                            {/* <TableCell align="left">1.</TableCell>
                             <TableCell align="left">
                               Good but can improve
                             </TableCell>
-                            <TableCell align="left">3</TableCell>
+                            <TableCell align="left">3</TableCell> */}
                           </TableBody>
                         </Table>
                       </TableContainer>
@@ -323,11 +329,10 @@ useEffect(() => {
           </Paper>
         </Box>
       </Container>
-    
 
-    
 
-      <Box
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
+        <Box
         sx={{
           margin: 3,
           display: "flex",
@@ -338,6 +343,22 @@ useEffect(() => {
           <Button variant="contained">Open QR Scanner</Button>
         </Link>
       </Box>
+      <Box
+        sx={{
+          margin: 3,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Link to="/attendingLogs">
+          <Button variant="contained">Open Attending Logs</Button>
+        </Link>
+      </Box>
+        </div>
+
+
+
+     
     </>
   );
 };

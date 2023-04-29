@@ -64,7 +64,7 @@ export default function Navbar() {
             style={{ textDecoration: "none", color: "black" }}
           >
             {" "}
-            <Button
+            {/* <Button
               variant="contained"
               sx={{
                 margin: "10px",
@@ -72,7 +72,7 @@ export default function Navbar() {
               }}
             >
               Update Fee
-            </Button>{" "}
+            </Button>{" "} */}
           </Link>
           <Link to="adminpage" style={{ textDecoration: "none" }}>
             <Button

@@ -19,6 +19,7 @@ import { QRScanner } from "./components/QRScanner/QRScanner";
 import { Tokens } from "./pages/Tokens";
 import { useSelector } from "react-redux";
 import ViewMenu from "./pages/viewMenu";
+import MessAttendingLogs from "./pages/MessAttendingLogs";
 
 function App() {
 const user = JSON.parse(localStorage.getItem('user'))
@@ -40,6 +41,7 @@ return (
           <Route path="/silvertokens" element={<Tokens />}></Route>
 
           <Route path="/subscribe" element={<Subscribe />}></Route>
+          <Route path="/attendingLogs" element={<MessAttendingLogs />}></Route>
           <Route path="/buytoken" element={<Subscribe />}></Route>
           <Route
             path="/profilepage"
