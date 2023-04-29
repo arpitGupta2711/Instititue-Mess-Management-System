@@ -6,6 +6,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Typography from "@mui/material/Typography";
+import { Grid } from "@mui/material";
 
 const rows = [];
 const days = [

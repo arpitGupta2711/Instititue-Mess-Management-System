@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Navigate, Route } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/Login";
 import ProfilePage from "./pages/ProfilePage";
@@ -19,21 +19,22 @@ import { QRScanner } from "./components/QRScanner/QRScanner";
 import { Tokens } from "./pages/Tokens";
 import { useSelector } from "react-redux";
 import ViewMenu from "./pages/viewMenu";
+import LeavePage from "./pages/LeavePage";
 
 function App() {
-const user = JSON.parse(localStorage.getItem('user'))
-
+  const user = JSON.parse(localStorage.getItem("user"));
 
   // const user=useSelector(state=>state.authReducer)
 
   // console.log('App is rendered');
 
-return (
+  return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/leavepage" element={<LeavePage />}></Route>
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
           <Route path="/viewmenu" element={<ViewMenu />}></Route>
           <Route path="/qrScanner" element={<QRScanner />}></Route>
@@ -48,13 +49,7 @@ return (
 
           <Route
             path="/adminpage"
-            element={
-              user ? (
-                <AdminPage />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
+            element={user ? <AdminPage /> : <Navigate to="/login" replace />}
           />
 
           {/* <Route path="/adminpage" element={<AdminPage></AdminPage>}></Route> */}
@@ -73,8 +68,6 @@ return (
 }
 
 export default App;
-
-
 
 //  <Slider {...settings}>
 //    {rows.map((item) => (
