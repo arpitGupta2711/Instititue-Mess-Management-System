@@ -28,9 +28,7 @@ const user = JSON.parse(localStorage.getItem('user'))
 
   // console.log('App is rendered');
 
-
-
-  return (
+return (
     <div className="App">
       <BrowserRouter>
         <Navbar />

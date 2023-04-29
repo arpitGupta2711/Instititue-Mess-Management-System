@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import moment from 'moment';
 
 import {
   FormControl,
@@ -16,6 +17,7 @@ import {
   Grid,
 } from "@mui/material";
 // import { API_URL } from './config/index';
+
 const HomePage = () => {
   const [sessionId, setSessionId] = useState("");
   const [status, setStatus] = useState("");
@@ -98,8 +100,7 @@ const HomePage = () => {
         console.error(error);
       });
   }
-
-
+  const today = moment(dateAndTime).format('MM/DD/YYYY');
   return (
     <section>
       <div className="product">
@@ -141,6 +142,7 @@ const HomePage = () => {
                 <TextField
                   // label="Controlled field"
                   type="date"
+                  min={today}
                   required
                   value={dateAndTime}
                   onChange={(event) => setDataAndTime(event.currentTarget.value)}

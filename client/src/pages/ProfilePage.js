@@ -18,7 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import "./styles.css";
 import QRCode from "react-qr-code";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import { useDispatch } from "react-redux";
 import { manageProfilePageNavbar } from "../features/manageNavSlice";
 import { viewTokens } from "../actions/tokens";
