@@ -12,7 +12,20 @@ import MoneyIcon from "@mui/icons-material/Money";
 import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 
+const meal = (meal)=>{
+  if(meal==='0'){
+    return 'Breakfast'
+  }
+  else if(meal==='1'){
+    return 'Lunch'
+  }
+  else{
+    return 'Dinner'
+  }
+}
+
 export const TokenComponent = ({ token }) => {
+  console.log('tokens are ',token);
   return (
     <Grid item sm={6} xs={12}>
       <Card sx={{ height: "250px", margin: "12px" }}>
@@ -25,10 +38,11 @@ export const TokenComponent = ({ token }) => {
                 fontWeight={600}
                 fontSize={15}
               >
-                22-April-2023
+               {token.tokenDate}
               </Typography>
               <Typography color="textPrimary" variant="h6">
-                {token.mealtime}
+                {meal(token.tokenTime)}
+            
               </Typography>
             </Grid>
             <Grid item>

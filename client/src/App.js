@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Navigate, Route } from "react-router-dom";
-
+import { useState,useEffect } from "react";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/Login";
 import ProfilePage from "./pages/ProfilePage";
@@ -17,12 +17,18 @@ import Buytoken from "./components/BuyToken/Buytoken";
 import GoogleOAuth from "./pages/GoogleOAuth.js";
 import { QRScanner } from "./components/QRScanner/QRScanner";
 import { Tokens } from "./pages/Tokens";
+import { useSelector } from "react-redux";
 import ViewMenu from "./pages/viewMenu";
 
 function App() {
-  const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem('user'))
 
-  return (
+
+  // const user=useSelector(state=>state.authReducer)
+
+  // console.log('App is rendered');
+
+return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
@@ -34,7 +40,7 @@ function App() {
           <Route path="/silvertokens" element={<Tokens />}></Route>
 
           <Route path="/subscribe" element={<Subscribe />}></Route>
-          <Route path="/buytoken" element={<Buytoken />}></Route>
+          <Route path="/buytoken" element={<Subscribe />}></Route>
           <Route
             path="/profilepage"
             element={<ProfilePage></ProfilePage>}
@@ -43,7 +49,7 @@ function App() {
           <Route
             path="/adminpage"
             element={
-              user?.type === "admin" ? (
+              user ? (
                 <AdminPage />
               ) : (
                 <Navigate to="/login" replace />

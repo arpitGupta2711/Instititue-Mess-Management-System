@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { Typography, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { manageHomePageNavbar } from "../../features/manageNavSlice";
@@ -13,9 +13,15 @@ import { Link } from "react-router-dom";
 import { getMenu } from "../../actions/menu.js";
 export const Home = () => {
   const dispatch = useDispatch();
- 
+ const [user,setUser]=useState({});
 
   useEffect(() => {
+
+    window.addEventListener('storage', () => {
+      // When local storage changes, dump the list to
+      // the console.
+       setUser(JSON.parse(localStorage.getItem('myCart')) || {})   
+    });
     dispatch(manageHomePageNavbar());
     // dispatch(getMenu());
   }, []);
@@ -81,7 +87,7 @@ export const Home = () => {
         </Grid>
         <Grid className="gridItem" item xs={6}>
           <Link
-            to="/buytoken"
+            to="/subscribe"
             style={{ color: "white", textDecoration: "none" }}
           >
             <Button

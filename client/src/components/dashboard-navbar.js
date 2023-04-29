@@ -22,10 +22,12 @@ import { AccountPopover } from "./account-popover";
 import { SilverToken } from "./dashboard/silverToken";
 import { GoldToken } from "./dashboard/goldToken";
 
-const DashboardNavbar = ({ data }) => {
-  console.log("data in prop", data);
+
+const DashboardNavbar = ({ data,name,email}) => {
+
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
   const settingsRef = useRef(null);
+  // console.log('data is ',data);
   return (
     <>
       <CssBaseline />
@@ -95,7 +97,7 @@ const DashboardNavbar = ({ data }) => {
                 sx={{ typography: { lg: "h5", sm: "h6", xs: "h6" } }}
                 color="text.secondary"
               >
-                Abhishek
+              {name}
               </Typography>
             </Grid>
             <Grid
@@ -119,7 +121,7 @@ const DashboardNavbar = ({ data }) => {
                 sx={{ typography: { lg: "h5", sm: "h6", xs: "h6" } }}
                 color="text.secondary"
               >
-                abhishek@101gmail.com
+                {email}
               </Typography>
             </Grid>
           </Grid>

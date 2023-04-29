@@ -7,9 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Link } from "react-router-dom";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { manageAdminPageNavbar } from "../features/manageNavSlice";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 import {
   Grid,
   Paper,
@@ -28,7 +29,28 @@ import { display } from "@mui/system";
 const AdminPage = () => {
   const dispatch = useDispatch();
   dispatch(manageAdminPageNavbar());
-  const user = localStorage.getItem("user");
+  // const user = localStorage.getItem("user");
+
+
+
+//   {
+//     "today": {
+//         "0": 5,
+//         "1": 5,
+//         "2": 5
+//     },
+//     "tommorow": {
+//         "0": 5,
+//         "1": 5,
+//         "2": 5
+//     }
+// }
+
+useEffect(() => {
+  axios.get("http://localhost:8000/menu/").then((res) => {
+
+  });
+}, []);
 
   return (
     <>
@@ -134,6 +156,95 @@ const AdminPage = () => {
                 </Paper>
               </Grid>
 
+
+              <Grid item xs={12}>
+                <Paper
+                  style={{
+                    backgroundImage: `url(${img})`,
+                    backgroundSize: "cover",
+                    height: "450px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      padding: "44px",
+                    }}
+                    spacing={{ xs: 1, sm: 2, md: 4 }}
+                  >
+                    <Typography
+                      sx={{ typography: { lg: "h4", xs: "h4" } }}
+                      color="text.secondary"
+                    >
+                      Today's Meal Number Registerd
+                    </Typography>
+                  </Box>
+
+                  <Container maxWidth="lg">
+                    <Grid
+                      container
+                      spacing={3}
+                      sx={{ justifyContent: "center" }}
+                    >
+                      <Grid item lg={3} sm={6} xl={3} xs={12}>
+                        <Card sx={{ height: { lg: "100px", xs: "80px" } }}>
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              component="div"
+                              sx={{ typography: { lg: "h5", xs: "h6" } }}
+                            >
+                              BreakFast
+                            </Typography>
+                            <Typography variant="h6" color="text.secondary">
+                              500
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+
+                      <Grid item lg={3} sm={6} xl={3} xs={12}>
+                        <Card sx={{ height: { lg: "100px", xs: "80px" } }}>
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              component="div"
+                              sx={{ typography: { lg: "h5", xs: "h6" } }}
+                            >
+                              Lunch
+                            </Typography>
+                            <Typography variant="h6" color="text.secondary">
+                              750
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+
+                      <Grid item lg={3} sm={6} xl={3} xs={12}>
+                        <Card sx={{ height: { lg: "100px", xs: "80px" } }}>
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              component="div"
+                              sx={{ typography: { lg: "h5", xs: "h6" } }}
+                            >
+                              Dinner
+                            </Typography>
+                            <Typography variant="h6" color="text.secondary">
+                              900
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+                    </Grid>
+                  </Container>
+                </Paper>
+              </Grid>
+
+
+
               <Grid item xs={12}>
                 <Paper
                   style={{
@@ -212,7 +323,9 @@ const AdminPage = () => {
           </Paper>
         </Box>
       </Container>
-     
+    
+
+    
 
       <Box
         sx={{

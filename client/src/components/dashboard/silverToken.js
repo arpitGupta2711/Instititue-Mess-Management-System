@@ -24,8 +24,9 @@ export const SilverToken = ({ token }) => {
       <CardMedia
         component="img"
         alt="green iguana"
+        
         height="220"
-        image="https://img.freepik.com/free-photo/cardano-blockchain-platform-concept_23-2150278250.jpg?size=626&ext=jpg&ga=GA1.1.112187679.1681490516&semt=sph"
+        image="https://silvertoken.com/wp-content/uploads/2020/08/silver-token.png"
       />
       <CardContent
         sx={{

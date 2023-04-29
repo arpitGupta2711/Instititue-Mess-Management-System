@@ -13,6 +13,12 @@ import { useSelector, useDispatch } from "react-redux";
 export default function Navbar() {
   const { Admin, AccountIcon, Login, SignUp, UpdateMenu, UpdateFee, Logout } =
     useSelector((store) => store.navbar);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const handleLogout = () => {
+    console.log("here");
+    localStorage.clear();
+    window.location.reload();
+  };
 
   // console.log(Admin,AccountIcon,Login,SignUp)
 
@@ -80,22 +86,15 @@ export default function Navbar() {
             to="/profilepage"
             style={{ textDecoration: "none", color: "black" }}
           >
-            {" "}
-            <Button
+            {user&& <Button
               variant="contained"
               sx={{ margin: "10px", display: `${AccountIcon ? "" : "none"}` }}
             >
               <AccountCircleIcon />
-            </Button>
+            </Button>}
+           
           </Link>
-          <Link
-            to="/login"
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-            }}
-          >
-            {" "}
+          {user ? (
             <Button
               variant="contained"
               sx={{
@@ -103,46 +102,31 @@ export default function Navbar() {
                 backgroundColor: "black",
                 display: `${Login ? "block" : "none"}`,
               }}
+              onClick={handleLogout}
             >
-              Login
+              Log Out
             </Button>
-          </Link>
-          <Link
-            to="/signup"
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-            }}
-          >
-            {" "}
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "black",
-                display: `${SignUp ? "block" : "none"}`,
+          ) : (
+            <Link
+              to="/login"
+              style={{
+                color: "#fff",
+                textDecoration: "none",
               }}
             >
-              Signup
-            </Button>
-          </Link>
-          <Link
-            to="/google.com"
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-            }}
-          >
-            {" "}
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "black",
-                display: `${Logout ? "block" : "none"}`,
-              }}
-            >
-              Logout
-            </Button>
-          </Link>
+              {" "}
+              <Button
+                variant="contained"
+                sx={{
+                  margin: "10px",
+                  backgroundColor: "black",
+                  display: `${Login ? "block" : "none"}`,
+                }}
+              >
+                Login
+              </Button>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
