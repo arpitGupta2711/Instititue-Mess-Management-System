@@ -87,7 +87,7 @@ export const Home = () => {
         </Grid>
         <Grid className="gridItem" item xs={6}>
           <Link
-            to="/buytoken"
+            to="/subscribe"
             style={{ color: "white", textDecoration: "none" }}
           >
             <Button

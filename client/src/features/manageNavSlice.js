@@ -41,6 +41,24 @@ const manageNavSlice = createSlice({
       state.UpdateFee = false;
       state.Logout = true;
     },
+    manageUpdateMenuNavbar: (state) => {
+      state.Admin = true;
+      state.AccountIcon = true;
+      state.Login = false;
+      state.SignUp = false;
+      state.UpdateMenu = false;
+      state.UpdateFee = true;
+      state.Logout = false;
+    },
+    manageUpdateFeeNavbar: (state) => {
+      state.Admin = true;
+      state.AccountIcon = true;
+      state.Login = false;
+      state.SignUp = false;
+      state.UpdateMenu = true;
+      state.UpdateFee = false;
+      state.Logout = false;
+    },
   },
 });
 
@@ -48,5 +66,7 @@ export const {
   manageHomePageNavbar,
   manageAdminPageNavbar,
   manageProfilePageNavbar,
+  manageUpdateMenuNavbar,
+  manageUpdateFeeNavbar,
 } = manageNavSlice.actions;
 export default manageNavSlice.reducer;

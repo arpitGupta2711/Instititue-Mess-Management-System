@@ -19,5 +19,5 @@ const API = axios.create({ baseURL: "http://localhost:8000" });
 // export const likePost = (id)=>API.patch(`/posts/${id}/likePost`)
 
 export const scanQr = (data) => API.post("/scan/", data);
-export const viewTokens = (data) => API.post("/get-tokens", data);
+export const viewTokens = (data) => API.post("/get-tokens/", data);
 export const UpdateMenu = (data) => API.post("/update-menu", data);

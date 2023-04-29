@@ -18,6 +18,7 @@ import GoogleOAuth from "./pages/GoogleOAuth.js";
 import { QRScanner } from "./components/QRScanner/QRScanner";
 import { Tokens } from "./pages/Tokens";
 import { useSelector } from "react-redux";
+import ViewMenu from "./pages/viewMenu";
 
 function App() {
 const user = JSON.parse(localStorage.getItem('user'))
@@ -36,11 +37,12 @@ const user = JSON.parse(localStorage.getItem('user'))
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
+          <Route path="/viewmenu" element={<ViewMenu />}></Route>
           <Route path="/qrScanner" element={<QRScanner />}></Route>
           <Route path="/silvertokens" element={<Tokens />}></Route>
 
           <Route path="/subscribe" element={<Subscribe />}></Route>
-          <Route path="/buytoken" element={<Buytoken />}></Route>
+          <Route path="/buytoken" element={<Subscribe />}></Route>
           <Route
             path="/profilepage"
             element={<ProfilePage></ProfilePage>}

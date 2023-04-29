@@ -39,11 +39,11 @@ const ProfilePage = () => {
   dispatch(manageProfilePageNavbar());
   useEffect(() => {
     if (user) {
-      // const tokens = viewTokens({ username: user.username }).then((value) => {
-      //   console.log("value", value);
-      //   console.log("valuedata", value.data);
-      //   setTokens(value.data);
-      // });
+      const tokens = viewTokens({ username: user.username }).then((value) => {
+        console.log("value", value);
+        console.log("valuedata", value.data);
+        setTokens(value.data);
+      });
        setValue(user.username);
     }
   }, []);
@@ -86,7 +86,7 @@ const ProfilePage = () => {
           >
             {value?(
               <QRCode
-                title={value}
+                title={"Press any where else to exit"}
                 size={256}
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                 viewBox={`0 0 256 256`}

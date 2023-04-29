@@ -49,7 +49,7 @@ export const GoldToken = ({ token }) => {
           <Typography color="textSecondary" variant="overline" fontWeight={600}>
             total token
           </Typography>
-          <Typography color="textPrimary" variant="h4">
+          <Typography color="textPrimary" sx={{textAlign:'center'}} variant="h4">
             {token}
           </Typography>
         </Grid>

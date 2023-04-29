@@ -24,9 +24,10 @@ import { GoldToken } from "./dashboard/goldToken";
 
 
 const DashboardNavbar = ({ data,name,email}) => {
-  console.log("data in prop", data);
+
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
   const settingsRef = useRef(null);
+  // console.log('data is ',data);
   return (
     <>
       <CssBaseline />
