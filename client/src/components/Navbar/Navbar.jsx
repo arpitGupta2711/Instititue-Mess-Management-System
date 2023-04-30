@@ -15,7 +15,7 @@ export default function Navbar() {
     useSelector((store) => store.navbar);
   const user = JSON.parse(localStorage.getItem("user"));
   const handleLogout = () => {
-    console.log("here");
+  
     localStorage.clear();
     window.location.reload();
   };
@@ -74,15 +74,17 @@ export default function Navbar() {
               Update Fee
             </Button>{" "} */}
           </Link>
-          <Link to="adminpage" style={{ textDecoration: "none" }}>
+
+          {user?.type==='Admin'&& <Link to="adminpage" style={{ textDecoration: "none" }}>
             <Button
               variant="contained"
               sx={{ margin: "10px", display: `${Admin ? "block" : "none"}` }}
             >
               Admin
             </Button>
-          </Link>
-          <Link
+          </Link>}
+
+          {user?.type==="Student"&&<Link
             to="/profilepage"
             style={{ textDecoration: "none", color: "black" }}
           >
@@ -93,7 +95,9 @@ export default function Navbar() {
               <AccountCircleIcon />
             </Button>}
            
-          </Link>
+          </Link>}
+         
+          
           {user ? (
             <Button
               variant="contained"

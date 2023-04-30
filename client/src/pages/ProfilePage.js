@@ -59,16 +59,27 @@ const ProfilePage = () => {
       <DashboardNavbar data={tokensA} name={user?.name} email={user?.email}>
 
       </DashboardNavbar>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center"  }}>    
         <Button
-          sx={{ width: "40%" }}
+         
           variant="contained"
           onClick={() => {
             setShowQr(true);
           }}
+          sx={{marginRight:'3%'}}
         >
           Show QR Code
         </Button>
+        <Link to="/leavepage">
+        <Button
+          
+          variant="contained"
+          
+        >
+          Leave Application
+        </Button>
+        </Link>
+        
       </div>
 
       {showQr && (

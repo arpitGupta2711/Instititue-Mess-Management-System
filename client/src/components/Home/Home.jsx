@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { manageHomePageNavbar } from "../../features/manageNavSlice";
@@ -13,18 +13,12 @@ import { Link } from "react-router-dom";
 import { getMenu } from "../../actions/menu.js";
 export const Home = () => {
   const dispatch = useDispatch();
- const [user,setUser]=useState({});
+  // const [user, setUser] = useState({});
+const user =(JSON.parse(localStorage.getItem("user")) );
+  dispatch(manageHomePageNavbar());
 
-  useEffect(() => {
 
-    window.addEventListener('storage', () => {
-      // When local storage changes, dump the list to
-      // the console.
-       setUser(JSON.parse(localStorage.getItem('myCart')) || {})   
-    });
-    dispatch(manageHomePageNavbar());
-    // dispatch(getMenu());
-  }, []);
+
 
   return (
     <>
@@ -48,7 +42,8 @@ export const Home = () => {
       </Typography>
       {/* </Paper> */}
       <Carousel />
-      <Grid className="gridContainer" container spacing={2}>
+
+      {user?.type==="Student"&&  <Grid className="gridContainer" container spacing={2}>
         <Grid className="gridItem" item xs={6}>
           <Typography
             sx={{
@@ -56,7 +51,7 @@ export const Home = () => {
               fontSize: "20px",
             }}
           >
-            Do you want to Subscribe?{" "}
+            Do you want to Subscribe?
           </Typography>
         </Grid>
         <Grid className="gridItem" item xs={6}>
@@ -74,6 +69,7 @@ export const Home = () => {
             </Button>
           </Link>
         </Grid>
+
         <Grid className="gridItem" item xs={6}>
           <Typography
             sx={{
@@ -81,10 +77,10 @@ export const Home = () => {
               fontSize: "20px",
             }}
           >
-            {" "}
             Try Tommorow's Meal
           </Typography>
         </Grid>
+
         <Grid className="gridItem" item xs={6}>
           <Link
             to="/subscribe"
@@ -100,7 +96,9 @@ export const Home = () => {
             </Button>
           </Link>
         </Grid>
-      </Grid>
+      </Grid>}
+    
+
       <Typography
         sx={{
           marginTop: "2%",
@@ -114,7 +112,7 @@ export const Home = () => {
         Testimonials
       </Typography>
       <Testimonials />
-      <Feedback />
+      {user?.type==="Student" && <Feedback />}
     </>
   );
 };

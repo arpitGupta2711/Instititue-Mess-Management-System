@@ -16,14 +16,14 @@ const Testimonials = () => {
         },
         {
             imgUrl:'images/person2.jpg',
-            name:'Abhishek',
+            name:'Giri',
             stars:5,
             description:"Marvelous . Loved Every bit of it."
 
         },
         {
             imgUrl:'images/person.jpg',
-            name:'Adarsh',
+            name:'Susan',
             stars:1,
             description:"Really like today's food. Quality was quite good"
 

@@ -89,18 +89,8 @@ const HomePage = () => {
     // selectedOption==='Single Token'?console.log('hello'):console.log('not selected')
     setMeal(event.target.value);
   };
-  function checkPaymentStatus(sessionId) {
-    fetch(`${API_URL}/api/stripe/check-status/${sessionId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setStatus(data.status);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-  const today = moment(dateAndTime).format('MM/DD/YYYY');
+
+const today = moment(dateAndTime).format('MM/DD/YYYY');
   return (
     <section>
       <div className="product">
@@ -130,8 +120,8 @@ const HomePage = () => {
                   onChange={handleSelectChange}
                 >
                   <MenuItem value="0">Single Token</MenuItem>
-                  <MenuItem value="1">45 Token</MenuItem>
-                  <MenuItem value="2">90 Token</MenuItem>
+                  <MenuItem value="1"> Subscription (45 Token)</MenuItem>
+                  <MenuItem value="2">Subscription (90 Token)</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

@@ -6,7 +6,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Typography from "@mui/material/Typography";
-import { Grid } from "@mui/material";
+import { Grid, Box, Item } from "@mui/material";
 
 const rows = [];
 const days = [
@@ -73,29 +73,29 @@ const Carousel = () => {
     });
   }, []);
 
-  const menu = [
-    {
-      id: 1,
-      src: "images/food.jpg",
-      alt: "Image 1",
-      meal: "Breakfast",
-      description: ["Poha", "Bread", "Sprouts"],
-    },
-    {
-      id: 2,
-      src: "images/food.jpg",
-      alt: "Image 2",
-      meal: "Lunch",
-      description: ["Chola Puri", "Rice", "Chapati"],
-    },
-    {
-      id: 3,
-      src: "images/food.jpg",
-      alt: "Image 3",
-      meal: "Dinner",
-      description: ["Shahi Paneer", "Biryani", "Chapati", "Gulab Jamun"],
-    },
-  ];
+  // const menu = [
+  //   {
+  //     id: 1,
+  //     src: "images/food.jpg",
+  //     alt: "Image 1",
+  //     meal: "Breakfast",
+  //     description: ["Poha", "Bread", "Sprouts"],
+  //   },
+  //   {
+  //     id: 2,
+  //     src: "images/food.jpg",
+  //     alt: "Image 2",
+  //     meal: "Lunch",
+  //     description: ["Chola Puri", "Rice", "Chapati"],
+  //   },
+  //   {
+  //     id: 3,
+  //     src: "images/food.jpg",
+  //     alt: "Image 3",
+  //     meal: "Dinner",
+  //     description: ["Shahi Paneer", "Biryani", "Chapati", "Gulab Jamun"],
+  //   },
+  // ];
 
   const settings = {
     infinite: true,
@@ -131,44 +131,61 @@ const Carousel = () => {
                   fontFamily: "'Architects Daughter', cursive",
                   fontSize: "48px",
                   wordWrap: "break-word",
+                  marginBottom:"4%"
                 }}
               >
                 {" "}
                 {item.day}
               </Typography>
-              <Typography
-                sx={{
-                  fontSize: "20px",
-                  color: "#471909",
-                  fontWeight: "800",
-                  wordWrap: "break-word",
-                }}
-              >
-                BreakFast:
-                {item.breakfast}
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: "20px",
-                  color: "#471909",
-                  fontWeight: "800",
-                  wordWrap: "break-word",
-                }}
-              >
-                Lunch:
-                {item.lunch}
-              </Typography>
 
-              <Typography
-                sx={{
-                  fontSize: "20px",
-                  color: "#471909",
-                  fontWeight: "800",
-                }}
-              >
-                Dinner:
-                {item.dinner}
-              </Typography>
+              <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={4}>
+                    <Typography
+                      sx={{
+                        fontSize: "20px",
+                        color: "#471909",
+                        fontWeight: "800",
+                        wordWrap: "break-word",
+                      }}
+                    >
+                      Breakfast:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={8}>
+                    {item.breakfast}
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography
+                      sx={{
+                        fontSize: "20px",
+                        color: "#471909",
+                        fontWeight: "800",
+                        wordWrap: "break-word",
+                      }}
+                    >
+                      Lunch:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={8}>
+                    {item.lunch}
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Typography
+                      sx={{
+                        fontSize: "20px",
+                        color: "#471909",
+                        fontWeight: "800",
+                      }}
+                    >
+                      Dinner:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={8}>
+                    {item.dinner}
+                  </Grid>
+                </Grid>
+              </Box>
             </div>
 
             <img src="images/food.jpg" style={{ opacity: "0.3" }} alt="food" />
