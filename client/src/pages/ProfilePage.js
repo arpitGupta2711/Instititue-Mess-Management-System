@@ -18,7 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import "./styles.css";
 import QRCode from "react-qr-code";
-
+import {CircularProgress} from "@mui/material";
 import { useDispatch } from "react-redux";
 import { manageProfilePageNavbar } from "../features/manageNavSlice";
 import { viewTokens } from "../actions/tokens";
@@ -49,6 +49,16 @@ const ProfilePage = () => {
       setValue(user.username);
     }
   }, []);
+
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+      <CircularProgress />
+    </div>
+    );
+  }
+
 
 
   return (

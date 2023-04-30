@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
+import {CircularProgress} from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -24,6 +25,7 @@ import { Link } from "react-router-dom";
 const CollegeAdmin = () => {
   const [logs, setLogs] = useState([]);
   const [feedbacks, setFeedbacks] = useState({});
+  const [loading,setLoading]=useState(true)
 
   useEffect(() => {
     axios.get("https://imms-backend1.onrender.com/get-report/").then((res) => {
@@ -34,6 +36,8 @@ const CollegeAdmin = () => {
         .then((res) => {
           console.log("feedbacks", res);
           setFeedbacks(res.data);
+
+          setLoading(false)
          
         })
         .catch((err) => {
@@ -41,7 +45,13 @@ const CollegeAdmin = () => {
         });
     });
   }, []);
-
+  if (loading) {
+    return (
+      <div className="loading-container">
+      <CircularProgress />
+    </div>
+    );
+  }
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "center" }}>

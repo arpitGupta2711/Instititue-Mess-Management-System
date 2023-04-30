@@ -10,20 +10,35 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import { Typography } from '@mui/material';
+import { CircularProgress} from '@mui/material';
 
 const PaymentLogs = () => {
     const [payments,setPayments]=useState([]);
+    const [loading,setLoading]=useState(true)
+
     useEffect(()=>{
         axios
       .get("https://imms-backend1.onrender.com/get-all-transactions/")
       .then((res) => {
         console.log("feedbacks", res);
         setPayments(res.data);
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);
       });
     },[])
+
+    if (loading) {
+      return (
+        <div className="loading-container">
+        <CircularProgress />
+      </div>
+      );
+    }
+  
+
+
   return (
     <div>
           <div style={{ display: "flex", justifyContent: "center" }}>
@@ -32,7 +47,7 @@ const PaymentLogs = () => {
           sx={{ typography: { lg: "h4", xs: "h4" }, margin: "10px" }}
           color="text.secondary"
         >
-          Attendance Logs
+          Payment Logs
         </Typography>
       </div>
 
