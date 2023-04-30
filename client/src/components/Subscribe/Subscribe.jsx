@@ -16,6 +16,7 @@ import {
   Container,
   Grid,
 } from "@mui/material";
+import {CircularProgress} from "@mui/material";
 // import { API_URL } from './config/index';
 
 const HomePage = () => {
@@ -26,6 +27,7 @@ const HomePage = () => {
   const [meal, setMeal] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
   const payment = JSON.parse(localStorage.getItem("payment"));
+  const [loading,setLoading]=useState(false)
   const API_URL = "https://imms-backend1.onrender.com";
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -40,6 +42,7 @@ const HomePage = () => {
 
     if (query.get("success")) {
       // console.log("Order placed! You will receive an email confirmation.");
+      setLoading(true)
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -60,13 +63,14 @@ const HomePage = () => {
           .then((data) => {
             console.log("data is ", data);
             setStatus(data.status);
+            setLoading(false)
             localStorage.removeItem("payment");
           })
           .catch((error) => {
             console.error("helo", error);
           });
       }
-
+      
       checkPaymentStatus(sessionId);
     }
 
@@ -80,20 +84,26 @@ const HomePage = () => {
   }, []);
 
   const handleSelectChange = (event) => {
-    // console.log('heelofsdg');
-    // console.log(event.target.value);
-    // selectedOption==='Single Token'?console.log('hello'):console.log('not selected')
+ 
     setSelectedOption(event.target.value);
   };
   const handleBreakfastChange = (event) => {
-    // console.log('heelofsdg');
-    // console.log(event.target.value);
-    // selectedOption==='Single Token'?console.log('hello'):console.log('not selected')
+   
     setMeal(event.target.value);
   };
 
+  if (loading) {
+    return (
+      <div className="loading-container">
+      <CircularProgress />
+    </div>
+    );
+  }
+
+
+
   return (
-    <section>
+    <section style={{marginBottom:'130px'}}>
       <div className="product">
         <Box
           component="form"
@@ -108,7 +118,7 @@ const HomePage = () => {
             alignItems: "center",
           }}
         >
-          <Grid container spacing={2}>
+          <Grid container spacing={5}>
             <Grid item xs={12} sm={12} sx={{ marginBottom: "8px" }}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Meal</InputLabel>
@@ -132,11 +142,13 @@ const HomePage = () => {
                   style={{
                     display: "flex",
                     margin: "auto",
-                    justifyContent: "center",
+                    // justifyContent: "space-around",
+
                   }}
                 >
                   <TextField
-                    // label="Controlled field"
+                  
+                  sx={{marginLeft:'1px'}}
                     type="date"
                     InputProps={{
                       inputProps: {
@@ -154,6 +166,7 @@ const HomePage = () => {
                     }
                   />
                   <Select
+                    sx={{marginRight:'1px'}}
                     labelId="demo-simple-select-label"
                     value={meal}
                     name="meals"
@@ -174,6 +187,7 @@ const HomePage = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             onClick={() => {
+              
               localStorage.setItem(
                 "payment",
                 JSON.stringify({

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormControl, FormLabel } from "@mui/material";
+import { FormControl, FormLabel, TextField } from "@mui/material";
 import { Box, Button, Input, MenuItem, Select } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
@@ -53,7 +53,7 @@ const NotEatingFromToday = () => {
     >
       <FormControl required sx={{ width: "30%" }}>
         <FormLabel>Date</FormLabel>
-        <Input
+        <TextField
           type="date"
           value={selectedDate}
           onChange={handleChangeDate}

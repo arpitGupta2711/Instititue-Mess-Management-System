@@ -11,9 +11,11 @@ import {
 } from "@mui/material";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import TransactionLog from "../components/Transaction/transaction-log";
+import {CircularProgress} from "@mui/material";
 const UserTransaction = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [userLog, setUserLog] = useState([]);
+  const [loading,setLoading]=useState(true)
   if (userLog) {
     console.log("User logs are ", userLog);
   }
@@ -26,11 +28,23 @@ const UserTransaction = () => {
       .then((res) => {
         console.log(res);
         setUserLog(res.data);
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+
+
+  if (loading) {
+    return (
+      <div className="loading-container" >
+      <CircularProgress/>
+    </div>
+    );
+  }
+  
   return (
     <div>
       <Container maxWidth="lg" sx={{ mt: "64px", mb: "64px" }}>

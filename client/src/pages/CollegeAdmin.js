@@ -21,7 +21,6 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-
 const CollegeAdmin = () => {
   const [logs, setLogs] = useState([]);
   const [feedbacks, setFeedbacks] = useState({});
@@ -30,28 +29,17 @@ const CollegeAdmin = () => {
     axios.get("https://imms-backend1.onrender.com/get-report/").then((res) => {
       console.log(res);
       setLogs(res.data);
-    });
-
-    axios
-      .get("https://imms-backend1.onrender.com/view-feedback/")
-      .then((res) => {
-        console.log("feedbacks", res);
-        setFeedbacks(res.data);
-        axios
-        .get("https://imms-backend1.onrender.com/get-all-transactions/")
+      axios
+        .get("https://imms-backend1.onrender.com/view-feedback/")
         .then((res) => {
           console.log("feedbacks", res);
           setFeedbacks(res.data);
+         
         })
         .catch((err) => {
           console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-   
+    });
   }, []);
 
   return (
@@ -65,39 +53,42 @@ const CollegeAdmin = () => {
         </Typography>
       </div>
       <Container maxWidth="lg">
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">Date</TableCell>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Date</TableCell>
 
-              <TableCell align="center">
-                Breakfast (Attended/Registered)
-              </TableCell>
-              <TableCell align="center">Lunch (Attended/Registered)</TableCell>
-              <TableCell align="center">Dinner (Attended/Registered)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {logs.length &&
-              logs.map((row, index) => (
-                <TableRow
-                  key={index}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell align="center" component="th" scope="row">
-                    {row.date}
-                  </TableCell>
+                <TableCell align="center">
+                  Breakfast (Attended/Registered)
+                </TableCell>
+                <TableCell align="center">
+                  Lunch (Attended/Registered)
+                </TableCell>
+                <TableCell align="center">
+                  Dinner (Attended/Registered)
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {logs.length &&
+                logs.map((row, index) => (
+                  <TableRow
+                    key={index}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="center" component="th" scope="row">
+                      {row.date}
+                    </TableCell>
 
-                  <TableCell align="center">{`${row.takenMealBreakfast}/${row.registeredBreakfast}`}</TableCell>
-                  <TableCell align="center">{`${row.takenMealLunch}/${row.registeredLunch}`}</TableCell>
-                  <TableCell align="center">{`${row.takenMealDinner}/${row.registeredDinner}`}</TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
+                    <TableCell align="center">{`${row.takenMealBreakfast}/${row.registeredBreakfast}`}</TableCell>
+                    <TableCell align="center">{`${row.takenMealLunch}/${row.registeredLunch}`}</TableCell>
+                    <TableCell align="center">{`${row.takenMealDinner}/${row.registeredDinner}`}</TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Container>
 
       <Box
@@ -161,12 +152,11 @@ const CollegeAdmin = () => {
           </TableContainer>
         </Container>
       </Box>
-<div  style={{display:'flex',justifyContent:'center'}}>
-<Link to="/paymentlogs">
-        <Button variant="contained">Transactions Details</Button>
-      </Link>
-</div>
-      
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Link to="/paymentlogs">
+          <Button variant="contained">Transactions Details</Button>
+        </Link>
+      </div>
     </div>
   );
 };

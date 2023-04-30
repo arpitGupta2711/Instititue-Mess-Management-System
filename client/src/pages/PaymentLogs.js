@@ -55,12 +55,12 @@ const PaymentLogs = () => {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {`${row.firstName} ${row.lastName}`}
+                {`${row.firstName}  ${row.lastName}`}
               </TableCell>
               <TableCell align="center">{row.email}</TableCell>
               <TableCell align="center">{row.numberOfToken}</TableCell>
               <TableCell align="center">{row.amount}</TableCell>
-              <TableCell align="center">{row.time}</TableCell>
+              <TableCell align="center">{`${row.date} | ${row.time.slice(0,8)}`}</TableCell>
             </TableRow>
           ))}
         </TableBody>

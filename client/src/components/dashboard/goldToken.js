@@ -17,7 +17,7 @@ import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import {CircularProgress} from "@mui/material";
 
 export const GoldToken = ({ token,loading }) => {
-  console.log("gold", token);
+  console.log("gold", loading);
   if (loading) {
     return (
       <div className="loading-container">

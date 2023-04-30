@@ -59,13 +59,13 @@ const AdminPage = () => {
   }, []);
 
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-      <CircularProgress />
-    </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="loading-container">
+  //     <CircularProgress />
+  //   </div>
+  //   );
+  // }
 
   return (
     <>

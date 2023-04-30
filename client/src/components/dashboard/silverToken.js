@@ -19,7 +19,7 @@ import {CircularProgress} from "@mui/material";
 import { Tokens } from "../../pages/Tokens";
 
 export const SilverToken = ({ token,loading }) => {
-  console.log("silver", token);
+  console.log("silver ", loading);
   if (loading) {
     return (
       <div className="loading-container">

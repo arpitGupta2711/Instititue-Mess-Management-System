@@ -6,14 +6,14 @@ import { Typography,Grid } from '@mui/material';
 const Footer = () => {
   return (
     <div className='footer'>
-        <Grid container spacing={2} sx={{marginBottom:'5px'}}>
+        <Grid container spacing={2} sx={{backgroundColor:'inherit'}}>
             <Grid item xs={12}>
             <Typography sx={{fontFamily: "'Kalam', cursive"}}>About Us: We're providing a hustle free token system acting as  a three way bridge between students, mess and administration.</Typography>
 
             </Grid>
             <Grid item xs={12}>
             
-    <Typography sx={{fontFamily: "'Kalam', cursive"}}>Contact us: 9583949392</Typography>
+     <Typography sx={{fontFamily: "'Kalam', cursive"}}>Contact us: 9583949392</Typography>
             </Grid>
             <Grid item xs={12}>
             
@@ -26,7 +26,7 @@ const Footer = () => {
 
             </Grid>
         </Grid>
-        <div style={{fontSize:"20px",display:'flex',justifyContent:'center'}}>
+        <div style={{fontSize:"20px",display:'flex',paddingTop:'2px',justifyContent:'center',backgroundColor:'inherit'}}>
         <Typography sx={{fontFamily: "'Kalam', cursive"}}>Copyright ©{new Date().getFullYear()}</Typography>
 
             

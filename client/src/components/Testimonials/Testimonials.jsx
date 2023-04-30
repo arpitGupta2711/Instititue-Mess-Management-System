@@ -46,11 +46,7 @@ const Testimonials = () => {
       lazyLoad: false,
       autoplay: true,
     autoplaySpeed: 1000  ,
-    // prevArrow: <PrevButton />,
-    // nextArrow: <NextButton />,
-    // customPaging: (i) => <div>{i + 1}</div>,
-   
-    // width:"100px"
+ 
      
     };
 

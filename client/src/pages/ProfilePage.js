@@ -44,11 +44,12 @@ const ProfilePage = () => {
         console.log("value", value);
         console.log("valuedata", value.data);
         setTokens(value.data);
+        setLoading(false);
       });
-      setLoading(false);
-       setValue(user.username);
+      setValue(user.username);
     }
   }, []);
+
 
   return (
     <>

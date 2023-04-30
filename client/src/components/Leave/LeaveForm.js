@@ -71,7 +71,7 @@ const LeaveForm = () => {
                 variant="outlined"
                 value={startDate}
                 InputProps={{
-                  inputProps: { min: new Date().toISOString().split("T")[0] },
+                  inputProps: { min: new Date(new Date().setDate(new Date().getDate()+1)).toISOString().split("T")[0] },
                 }}
                 onChange={(e) => setStartDate(e.target.value)}
               />
@@ -85,7 +85,7 @@ const LeaveForm = () => {
                 variant="outlined"
                 value={endDate}
                 InputProps={{
-                  inputProps: { min: new Date().toISOString().split("T")[0] },
+                  inputProps: { min: new Date(new Date().setDate(new Date().getDate()+1)).toISOString().split("T")[0] },
                 }}
                 onChange={(e) => setEndDate(e.target.value)}
               />

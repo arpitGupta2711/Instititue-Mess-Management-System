@@ -33,7 +33,7 @@ const LeavePage = () => {
         width="100%"
         m="40px 0 15px 0"
         borderRadius="12px"
-        border="1px solid"
+        border="none"
       >
         <Box
           sx={{
@@ -41,7 +41,7 @@ const LeavePage = () => {
             justifyContent: "center",
           }}
         >
-          <Typography variant="h3">Leave Management</Typography>
+          <Typography variant="h3" sx={{fontStyle:'italic'}}>Leave Management</Typography>
         </Box>
       </Box>
       <Box
