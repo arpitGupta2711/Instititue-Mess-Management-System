@@ -7,6 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { manageLogsNavbar } from "../features/manageNavSlice";
 import axios from "axios";
 const MessAttendingLogs = () => {
   const [logs, setLogs] = useState([]);
@@ -49,7 +51,8 @@ const MessAttendingLogs = () => {
     },
   ];
 
-
+  const dispatch = useDispatch();
+  dispatch(manageLogsNavbar());
   useEffect(() => {
     axios.get("http://localhost:8000/get-report/").then((res) => {
       console.log(res);
@@ -73,20 +76,21 @@ const MessAttendingLogs = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {logs.length&&logs.map((row, index) => (
-              <TableRow
-                key={index}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="center" component="th" scope="row">
-                  {row.date}
-                </TableCell>
+            {logs.length &&
+              logs.map((row, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell align="center" component="th" scope="row">
+                    {row.date}
+                  </TableCell>
 
-                <TableCell align="center">{`${row.takenMealBreakfast}/${row.registeredBreakfast}`}</TableCell>
-                <TableCell align="center">{`${row.takenMealLunch}/${row.registeredLunch}`}</TableCell>
-                <TableCell align="center">{`${row.takenMealDinner}/${row.registeredDinner}`}</TableCell>
-              </TableRow>
-            ))}
+                  <TableCell align="center">{`${row.takenMealBreakfast}/${row.registeredBreakfast}`}</TableCell>
+                  <TableCell align="center">{`${row.takenMealLunch}/${row.registeredLunch}`}</TableCell>
+                  <TableCell align="center">{`${row.takenMealDinner}/${row.registeredDinner}`}</TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

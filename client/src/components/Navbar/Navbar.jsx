@@ -15,7 +15,6 @@ export default function Navbar() {
     useSelector((store) => store.navbar);
   const user = JSON.parse(localStorage.getItem("user"));
   const handleLogout = () => {
-  
     localStorage.clear();
     window.location.reload();
   };
@@ -75,36 +74,43 @@ export default function Navbar() {
             </Button>{" "} */}
           </Link>
 
-          {user?.type==='Admin'&& <Link to="adminpage" style={{ textDecoration: "none" }}>
-            <Button
-              variant="contained"
-              sx={{ margin: "10px", display: `${Admin ? "block" : "none"}` }}
-            >
-              Admin
-            </Button>
-          </Link>}
+          {user?.type === "Admin" && (
+            <Link to="adminpage" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                sx={{ margin: "10px", display: `${Admin ? "block" : "none"}` }}
+              >
+                Admin
+              </Button>
+            </Link>
+          )}
 
-          {user?.type==="Student"&&<Link
-            to="/profilepage"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            {user&& <Button
-              variant="contained"
-              sx={{ margin: "10px", display: `${AccountIcon ? "" : "none"}` }}
+          {user?.type === "Student" && (
+            <Link
+              to="/profilepage"
+              style={{ textDecoration: "none", color: "black" }}
             >
-              <AccountCircleIcon />
-            </Button>}
-           
-          </Link>}
-         
-          
+              {user && (
+                <Button
+                  variant="contained"
+                  sx={{
+                    margin: "10px",
+                    display: `${AccountIcon ? "" : "none"}`,
+                  }}
+                >
+                  <AccountCircleIcon />
+                </Button>
+              )}
+            </Link>
+          )}
+
           {user ? (
             <Button
               variant="contained"
               sx={{
                 margin: "10px",
                 backgroundColor: "black",
-                display: `${Login ? "block" : "none"}`,
+                display: `${Logout ? "block" : "none"}`,
               }}
               onClick={handleLogout}
             >

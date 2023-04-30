@@ -44,7 +44,7 @@ const ProfilePage = () => {
         console.log("valuedata", value.data);
         setTokens(value.data);
       });
-       setValue(user.username);
+      setValue(user.username);
     }
   }, []);
   // const user = JSON.parse(localStorage.getItem('user'));
@@ -56,30 +56,24 @@ const ProfilePage = () => {
   // }
   return (
     <>
-      <DashboardNavbar data={tokensA} name={user?.name} email={user?.email}>
-
-      </DashboardNavbar>
-      <div style={{ display: "flex", justifyContent: "center"  }}>    
+      <DashboardNavbar
+        data={tokensA}
+        name={user?.name}
+        email={user?.email}
+      ></DashboardNavbar>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button
-         
           variant="contained"
           onClick={() => {
             setShowQr(true);
           }}
-          sx={{marginRight:'3%'}}
+          sx={{ marginRight: "3%" }}
         >
           Show QR Code
         </Button>
         <Link to="/leavepage">
-        <Button
-          
-          variant="contained"
-          
-        >
-          Leave Application
-        </Button>
+          <Button variant="contained">Leave Application</Button>
         </Link>
-        
       </div>
 
       {showQr && (
@@ -95,7 +89,7 @@ const ProfilePage = () => {
               e.stopPropagation();
             }}
           >
-            {value?(
+            {value ? (
               <QRCode
                 title={"Press any where else to exit"}
                 size={256}
@@ -103,7 +97,9 @@ const ProfilePage = () => {
                 viewBox={`0 0 256 256`}
                 value={value}
               />
-            ):'no token'}
+            ) : (
+              "no token"
+            )}
           </div>
         </div>
       )}

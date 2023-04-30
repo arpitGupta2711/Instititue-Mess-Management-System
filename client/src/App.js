@@ -18,7 +18,7 @@ import GoogleOAuth from "./pages/GoogleOAuth.js";
 import { QRScanner } from "./components/QRScanner/QRScanner";
 import { Tokens } from "./pages/Tokens";
 import { useSelector } from "react-redux";
-import ViewMenu from "./pages/viewMenu";
+
 import MessAttendingLogs from "./pages/MessAttendingLogs";
 import LeavePage from "./pages/LeavePage";
 
@@ -37,7 +37,6 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/leavepage" element={<LeavePage />}></Route>
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
-          <Route path="/viewmenu" element={<ViewMenu />}></Route>
           <Route path="/qrScanner" element={<QRScanner />}></Route>
           <Route path="/silvertokens" element={<Tokens />}></Route>
 
