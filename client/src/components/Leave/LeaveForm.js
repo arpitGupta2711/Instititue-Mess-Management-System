@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import { FormControl, FormLabel } from "@material-ui/core";
-import { Button, TextField } from "@material-ui/core";
-import { InputAdornment } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
+import { FormControl, FormLabel } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import { InputAdornment, Box } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import axios from "axios";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiFormControl-root": {
-      margin: theme.spacing(1),
-      width: "100%",
-    },
-    "& .MuiButton-root": {
-      margin: theme.spacing(3, 0),
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     "& .MuiFormControl-root": {
+//       margin: theme.spacing(1),
+//       width: "100%",
+//     },
+//     "& .MuiButton-root": {
+//       margin: theme.spacing(3, 0),
+//     },
+//   },
+// }));
 
 const LeaveForm = () => {
   const [startDate, setStartDate] = useState(
@@ -29,7 +29,7 @@ const LeaveForm = () => {
   const [click, setClick] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const classes = useStyles();
+  // const classes = useStyles();
 
   useEffect(() => {
     if (click) {
@@ -41,6 +41,7 @@ const LeaveForm = () => {
           endDate: endDate,
         })
         .then((res) => {
+          alert("successfully leave approved");
           console.log(res);
         })
         .catch((err) => {
@@ -57,47 +58,53 @@ const LeaveForm = () => {
   };
 
   return (
-    <form className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <FormControl>
-            <FormLabel>Start Date</FormLabel>
-            <TextField
-              type="date"
-              variant="outlined"
-              value={startDate}
-              InputProps={{
-                inputProps: { min: new Date(new Date().setDate(new Date().getDate()+1)).toISOString().split("T")[0] },
-              }}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-          </FormControl>
+    <Box
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <form>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <FormControl>
+              <FormLabel>Start Date</FormLabel>
+              <TextField
+                type="date"
+                variant="outlined"
+                value={startDate}
+                InputProps={{
+                  inputProps: { min: new Date().toISOString().split("T")[0] },
+                }}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl>
+              <FormLabel>End Date</FormLabel>
+              <TextField
+                type="date"
+                variant="outlined"
+                value={endDate}
+                InputProps={{
+                  inputProps: { min: new Date().toISOString().split("T")[0] },
+                }}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </FormControl>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <FormControl>
-            <FormLabel>End Date</FormLabel>
-            <TextField
-              type="date"
-              variant="outlined"
-              value={endDate}
-              InputProps={{
-                inputProps: { min: new Date(new Date().setDate(new Date().getDate()+1)).toISOString().split("T")[0] },
-              }}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </FormControl>
-        </Grid>
-      </Grid>
-
-      <Button
-        variant="contained"
-        color="primary"
-        fullWidth
-        onClick={submitHandler}
-      >
-        Submit
-      </Button>
-    </form>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={submitHandler}
+          sx={{
+            marginTop: "12px",
+          }}
+        >
+          Submit
+        </Button>
+      </form>
+    </Box>
   );
 };
 

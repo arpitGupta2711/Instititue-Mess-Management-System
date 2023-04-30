@@ -11,6 +11,7 @@
     "@mui/lab": "^5.0.0-alpha.128",
     "@mui/material": "^5.12.2",
     "@mui/styled-engine-sc": "^5.12.0",
+    "@mui/styles": "^5.12.0",
     "@react-oauth/google": "^0.10.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",

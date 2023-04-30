@@ -17,7 +17,7 @@ const handleGoogleLogin = (response, navigate, dispatch) => {
   // console.log(response);
 
   const result = jwt_decode(response.credential);
-  
+
   axios
     .post(`${baseURL}/auth/login/`, {
       token: result,
@@ -27,7 +27,7 @@ const handleGoogleLogin = (response, navigate, dispatch) => {
       client_secret: drfClientSecret,
     })
     .then((res) => {
-      const {firstname,lastname,type,username,email}=res.data
+      const { firstname, lastname, type, username, email } = res.data;
       console.log(res);
       const user = {
         name: `${firstname} ${lastname}`,
@@ -36,10 +36,10 @@ const handleGoogleLogin = (response, navigate, dispatch) => {
         type: type,
       };
 
-    localStorage.setItem("user", JSON.stringify(user));
-    window.location.reload();
-    console.log('here')
-    //  dispatch(login(user))
+      localStorage.setItem("user", JSON.stringify(user));
+      window.location.reload();
+      console.log("here");
+      //  dispatch(login(user))
       navigate("/");
     })
     .catch((err) => {
@@ -52,14 +52,12 @@ const GoogleOAuth = () => {
   const dispatch = useDispatch();
   return (
     <div>
-
       <GoogleLogin
         clientId={googleClientId}
         buttonText="LOGIN WITH GOOGLE"
         onSuccess={(response) =>
           handleGoogleLogin(response, navigate, dispatch)
         }
-
         render={(renderProps) => (
           <button
             onClick={renderProps.onClick}

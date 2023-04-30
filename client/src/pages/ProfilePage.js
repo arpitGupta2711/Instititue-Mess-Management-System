@@ -52,31 +52,37 @@ const ProfilePage = () => {
 
   return (
     <>
-      <DashboardNavbar data={tokensA} name={user?.name} email={user?.email} loading={loading}>
-
-      </DashboardNavbar>
-      <div style={{ display: "flex", justifyContent: "center"  }}>    
+      <DashboardNavbar
+        data={tokensA}
+        name={user?.name}
+        email={user?.email}
+        loading={loading}
+      ></DashboardNavbar>
+      <Grid
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Button
-         
           variant="contained"
           onClick={() => {
             setShowQr(true);
           }}
-          sx={{marginRight:'3%'}}
         >
           Show QR Code
         </Button>
         <Link to="/leavepage">
-        <Button
-          
-          variant="contained"
-          
-        >
-          Leave Application
-        </Button>
+          <Button variant="contained" sx={{ margin: 2 }}>
+            {" "}
+            Leave Application
+          </Button>
         </Link>
-        
-      </div>
+        <Link to="/user-transaction">
+          <Button variant="contained">Transactions</Button>
+        </Link>
+      </Grid>
 
       {showQr && (
         <div
@@ -91,7 +97,7 @@ const ProfilePage = () => {
               e.stopPropagation();
             }}
           >
-            {value?(
+            {value ? (
               <QRCode
                 title={"Press any where else to exit"}
                 size={256}
@@ -99,7 +105,9 @@ const ProfilePage = () => {
                 viewBox={`0 0 256 256`}
                 value={value}
               />
-            ):'no token'}
+            ) : (
+              "no token"
+            )}
           </div>
         </div>
       )}

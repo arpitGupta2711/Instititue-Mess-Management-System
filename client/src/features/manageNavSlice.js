@@ -21,7 +21,7 @@ const manageNavSlice = createSlice({
       state.SignUp = true;
       state.UpdateMenu = false;
       state.UpdateFee = false;
-      state.Logout = false;
+      state.Logout = true;
     },
     manageAdminPageNavbar: (state) => {
       state.Admin = true;
@@ -33,13 +33,13 @@ const manageNavSlice = createSlice({
       state.Logout = false;
     },
     manageProfilePageNavbar: (state) => {
-      state.Admin = true;
+      state.Admin = false;
       state.AccountIcon = true;
       state.Login = false;
       state.SignUp = false;
       state.UpdateMenu = false;
       state.UpdateFee = false;
-      state.Logout = true;
+      state.Logout = false;
     },
     manageUpdateMenuNavbar: (state) => {
       state.Admin = true;
@@ -59,6 +59,24 @@ const manageNavSlice = createSlice({
       state.UpdateFee = false;
       state.Logout = false;
     },
+    manageLeavePageNavbar: (state) => {
+      state.Admin = false;
+      state.AccountIcon = true;
+      state.Login = false;
+      state.SignUp = false;
+      state.UpdateMenu = false;
+      state.UpdateFee = false;
+      state.Logout = true;
+    },
+    manageLogsNavbar: (state) => {
+      state.Admin = false;
+      state.AccountIcon = true;
+      state.Login = false;
+      state.SignUp = false;
+      state.UpdateMenu = true;
+      state.UpdateFee = false;
+      state.Logout = true;
+    },
   },
 });
 
@@ -68,5 +86,7 @@ export const {
   manageProfilePageNavbar,
   manageUpdateMenuNavbar,
   manageUpdateFeeNavbar,
+  manageLeavePageNavbar,
+  manageLogsNavbar,
 } = manageNavSlice.actions;
 export default manageNavSlice.reducer;

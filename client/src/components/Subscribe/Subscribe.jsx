@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import moment from 'moment';
+import moment from "moment";
 
 import {
   FormControl,
@@ -23,9 +23,9 @@ const HomePage = () => {
   const [status, setStatus] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [dateAndTime, setDataAndTime] = useState("");
-  const [meal,setMeal]=useState('')
-  const user = JSON.parse(localStorage.getItem('user'))
-  const payment = JSON.parse(localStorage.getItem('payment'))
+  const [meal, setMeal] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const payment = JSON.parse(localStorage.getItem("payment"));
   const API_URL = "https://imms-backend1.onrender.com";
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -41,27 +41,31 @@ const HomePage = () => {
     if (query.get("success")) {
       // console.log("Order placed! You will receive an email confirmation.");
       const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: user.username,token:payment.token,date:payment.date,time:payment.time})
-    };
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: user.username,
+          token: payment.token,
+          date: payment.date,
+          time: payment.time,
+        }),
+      };
       function checkPaymentStatus(sessionId) {
         console.log(sessionId);
         fetch(`${API_URL}/api/stripe/check-status/${sessionId}`, requestOptions)
-          .then((response) =>{
-            console.log('response is ',response);
-            return response.json()
-          } )
+          .then((response) => {
+            console.log("response is ", response);
+            return response.json();
+          })
           .then((data) => {
-            console.log('data is ',data);
+            console.log("data is ", data);
             setStatus(data.status);
-            localStorage.removeItem('payment')
+            localStorage.removeItem("payment");
           })
           .catch((error) => {
-            console.error('helo',error);
+            console.error("helo", error);
           });
       }
-  
 
       checkPaymentStatus(sessionId);
     }
@@ -72,12 +76,7 @@ const HomePage = () => {
       );
     }
 
-    console.log('helel')
-
-
-
-
-
+    console.log("helel");
   }, []);
 
   const handleSelectChange = (event) => {
@@ -92,7 +91,6 @@ const HomePage = () => {
     // selectedOption==='Single Token'?console.log('hello'):console.log('not selected')
     setMeal(event.target.value);
   };
-
 
   return (
     <section>
@@ -109,10 +107,9 @@ const HomePage = () => {
             flexDirection: "column",
             alignItems: "center",
           }}
-
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} sx={{marginBottom:'8px'}}>
+            <Grid item xs={12} sm={12} sx={{ marginBottom: "8px" }}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Meal</InputLabel>
                 <Select
@@ -131,30 +128,43 @@ const HomePage = () => {
 
             {selectedOption === "0" && (
               <>
-              <div style={{ display: "flex", margin: "auto" ,justifyContent:'center'}}>
-                <TextField
-                  // label="Controlled field"
-                  type="date"
-                  InputProps={{
-                    inputProps: { min: new Date(new Date().setDate(new Date().getDate()+1)).toISOString().split("T")[0] },
+                <div
+                  style={{
+                    display: "flex",
+                    margin: "auto",
+                    justifyContent: "center",
                   }}
-                  required
-                  value={dateAndTime}
-                  onChange={(event) => setDataAndTime(event.currentTarget.value)}
-                />
-                <Select
-                  labelId="demo-simple-select-label"
-                  value={meal}
-                  name="meals"
-                  required
-                  onChange={handleBreakfastChange}
                 >
-                  <MenuItem value="0">Breakfast</MenuItem>
-                  <MenuItem value="1">Lunch</MenuItem>
-                  <MenuItem value="2">Dinner</MenuItem>
-                </Select>
-              </div>
-             
+                  <TextField
+                    // label="Controlled field"
+                    type="date"
+                    InputProps={{
+                      inputProps: {
+                        min: new Date(
+                          new Date().setDate(new Date().getDate() + 1)
+                        )
+                          .toISOString()
+                          .split("T")[0],
+                      },
+                    }}
+                    required
+                    value={dateAndTime}
+                    onChange={(event) =>
+                      setDataAndTime(event.currentTarget.value)
+                    }
+                  />
+                  <Select
+                    labelId="demo-simple-select-label"
+                    value={meal}
+                    name="meals"
+                    required
+                    onChange={handleBreakfastChange}
+                  >
+                    <MenuItem value="0">Breakfast</MenuItem>
+                    <MenuItem value="1">Lunch</MenuItem>
+                    <MenuItem value="2">Dinner</MenuItem>
+                  </Select>
+                </div>
               </>
             )}
           </Grid>
@@ -163,17 +173,21 @@ const HomePage = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={()=>{
-              localStorage.setItem('payment',JSON.stringify({token:selectedOption,date:dateAndTime,time:meal}))
+            onClick={() => {
+              localStorage.setItem(
+                "payment",
+                JSON.stringify({
+                  token: selectedOption,
+                  date: dateAndTime,
+                  time: meal,
+                })
+              );
             }}
           >
             Checkout
           </Button>
         </Box>
-
-    
       </div>
-  
     </section>
   );
 };

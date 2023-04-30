@@ -1,25 +1,39 @@
-import React, { useEffect } from "react";
-// import Box from '@mui/material/Box';
-import { Typography } from "@mui/material";
-import { Box, Container, Text } from "@chakra-ui/react";
-import { Tabs, TabList, Tab, TabPanel, TabPanels } from "@chakra-ui/react";
-// import useHistory from 'react';
-
-// import NotEatingFromToday from "./components/NotEatingFromToday.js";
+import React from "react";
+import { Typography, Box, Container } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { Tabs, Tab } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { manageLeavePageNavbar } from "../features/manageNavSlice";
 import LeaveForm from "../components/Leave/LeaveForm";
 import NotEatingFromToday from "../components/Leave/NotEatingFromToday";
-import { teal } from "@mui/material/colors";
+
 const LeavePage = () => {
+  const dispatch = useDispatch();
+  dispatch(manageLeavePageNavbar());
+  const [value, setValue] = React.useState("1");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <Container maxW="xl" centerContent>
+    <Container
+      maxWidth="xl"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        py: 10,
+      }}
+    >
       <Box
-        d="flex"
+        display="flex"
         justifyContent="center"
         p={2}
-        w="100%"
+        width="100%"
         m="40px 0 15px 0"
-        borderRadius="lg"
-        borderWidth="1px"
+        borderRadius="12px"
+        border="1px solid"
       >
         <Box
           sx={{
@@ -30,35 +44,35 @@ const LeavePage = () => {
           <Typography variant="h3">Leave Management</Typography>
         </Box>
       </Box>
-      <Box bg="white" w="90%" p={4} borderRadius="12px" borderWidth="1px">
-        <Tabs isFitted variant="soft-rounded">
-          <TabList mb="1em" sx={{ margin: "13px" }}>
-            <Tab
-              sx={{
-                padding: "12px",
-              }}
+      <Box
+        bgcolor="white"
+        width="90%"
+        p={4}
+        borderRadius="12px"
+        border="1px solid"
+      >
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: "1px solid", borderColor: "divider" }}>
+            <TabList
+              onChange={handleChange}
+              variant="scrollable"
+              scrollButtons="auto"
+              sx={{ margin: 2 }}
             >
-              LeaveForm
-            </Tab>
-            <Tab
-              sx={{
-                padding: "12px",
-              }}
-            >
-              NotEatingFromToday
-            </Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <LeaveForm />
-            </TabPanel>
-            <TabPanel>
-              <NotEatingFromToday />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+              <Tab label="Leave Form" value="1" sx={{ padding: "12px" }} />
+              <Tab label="Cancel Meal" value="2" sx={{ padding: "12px" }} />
+            </TabList>
+          </Box>
+          <TabPanel value="1">
+            <LeaveForm />
+          </TabPanel>
+          <TabPanel value="2">
+            <NotEatingFromToday />
+          </TabPanel>
+        </TabContext>
       </Box>
     </Container>
   );
 };
+
 export default LeavePage;

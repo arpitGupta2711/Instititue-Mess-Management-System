@@ -33,6 +33,7 @@ const NotEatingFromToday = () => {
         })
         .then((res) => {
           console.log(res);
+          alert("successfully leave approved");
         })
         .catch((err) => {
           console.log(err);
@@ -50,7 +51,7 @@ const NotEatingFromToday = () => {
     <Box
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <FormControl required sx={{ width: "100%" }}>
+      <FormControl required sx={{ width: "30%" }}>
         <FormLabel>Date</FormLabel>
         <Input
           type="date"
@@ -63,7 +64,7 @@ const NotEatingFromToday = () => {
         />
       </FormControl>
 
-      <FormControl required sx={{ width: "100%" }}>
+      <FormControl required sx={{ width: "30%", margin: "24px" }}>
         <FormLabel>Meal</FormLabel>
         <Select
           value={selectedMeal}
@@ -71,8 +72,8 @@ const NotEatingFromToday = () => {
           input={<Input id="input1" hidden={true} placeholder="input data" />}
           sx={{ width: "100%", textAlign: "left", marginLeft: "10px" }}
         >
-          <MenuItem ></MenuItem>
-          <MenuItem >-Select Meal-</MenuItem>
+          <MenuItem></MenuItem>
+          <MenuItem>-Select Meal-</MenuItem>
           <MenuItem value={0}>BreakFast</MenuItem>
           <MenuItem value={1}>Lunch</MenuItem>
           <MenuItem value={2}>Dinner</MenuItem>
