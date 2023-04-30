@@ -23,7 +23,7 @@ import { SilverToken } from "./dashboard/silverToken";
 import { GoldToken } from "./dashboard/goldToken";
 
 
-const DashboardNavbar = ({ data,name,email}) => {
+const DashboardNavbar = ({ data,name,email,loading}) => {
 
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
   const settingsRef = useRef(null);
@@ -31,26 +31,6 @@ const DashboardNavbar = ({ data,name,email}) => {
   return (
     <>
       <CssBaseline />
-      {/* Dashboard Navbar */}
-      {/* <AppBar position="static" color="default"  sx={{position:'relative'}}>
-        <Toolbar >
-          <Typography variant="h6" color="inherit" noWrap sx={{flexGrow:1, fontWeight:'700', fontSize:{lg:'32px',sm:'20px'}}} >
-            Imms
-          </Typography>
-          <Button variant='contained' >Account</Button>
-          <Avatar
-            onClick={() => setOpenAccountPopover(true)}
-            ref={settingsRef}
-            sx={{
-              cursor: 'pointer',
-              height: 40,
-              width: 40,
-              ml: 3
-            }}
-            src="/static/images/avatars/avatar_1.png"
-          ></Avatar>
-        </Toolbar>
-      </AppBar> */}
 
       <Container
         maxWidth="lg"
@@ -138,10 +118,10 @@ const DashboardNavbar = ({ data,name,email}) => {
         <Container>
           <Grid container spacing={5} sx={{ justifyContent: "center" }}>
             <Grid item lg={6} sm={6} xl={3} xs={12}>
-              <SilverToken token={data.silver} />
+              <SilverToken loading={loading} token={data.silver} />
             </Grid>
             <Grid item lg={6} sm={6} xl={3} xs={12}>
-              <GoldToken token={data.gold} />
+              <GoldToken loading={loading} token={data.gold} />
             </Grid>
           </Grid>
         </Container>

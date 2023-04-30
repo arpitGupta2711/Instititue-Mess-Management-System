@@ -15,7 +15,7 @@ const Feedback = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input, rating);
-    axios.post('http://localhost:8000/give-feedback/', {
+    axios.post('https://imms-backend1.onrender.com/give-feedback/', {
       username:user.username,
       message:input,
       rating:rating

@@ -10,7 +10,7 @@ import { login } from "../features/authSlice.js";
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const drfClientId = process.env.REACT_APP_DRF_CLIENT_ID;
 const drfClientSecret = process.env.REACT_APP_DRF_CLIENT_SECRET;
-const baseURL = "http://localhost:8000";
+const baseURL = "https://imms-backend1.onrender.com";
 // const user={userId:4343,goldToken:5,silverToken:[{day:4,time:3,expiryTime:'13/09/2023'}]}
 
 const handleGoogleLogin = (response, navigate, dispatch) => {

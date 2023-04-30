@@ -35,28 +35,24 @@ const ProfilePage = () => {
   const [value, setValue] = useState("");
   const [tokensA, setTokens] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
+  const [loading,setLoading]=useState(true)
   const dispatch = useDispatch();
   dispatch(manageProfilePageNavbar());
   useEffect(() => {
     if (user) {
-      const tokens = viewTokens({ username: user.username }).then((value) => {
+    viewTokens({ username: user.username }).then((value) => {
         console.log("value", value);
         console.log("valuedata", value.data);
         setTokens(value.data);
       });
+      setLoading(false);
        setValue(user.username);
     }
   }, []);
-  // const user = JSON.parse(localStorage.getItem('user'));
-  // if(value===""){
-  //   const use=user.userId;
-  //   const a = use.toString()
-  //   console.log('here ',typeof(a));
-  //   setValue(a)
-  // }
+
   return (
     <>
-      <DashboardNavbar data={tokensA} name={user?.name} email={user?.email}>
+      <DashboardNavbar data={tokensA} name={user?.name} email={user?.email} loading={loading}>
 
       </DashboardNavbar>
       <div style={{ display: "flex", justifyContent: "center"  }}>    

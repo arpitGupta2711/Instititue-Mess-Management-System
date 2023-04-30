@@ -15,10 +15,18 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoneyIcon from "@mui/icons-material/Money";
 import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 import { Link } from "react-router-dom";
+import {CircularProgress} from "@mui/material";
 import { Tokens } from "../../pages/Tokens";
 
-export const SilverToken = ({ token }) => {
+export const SilverToken = ({ token,loading }) => {
   console.log("silver", token);
+  if (loading) {
+    return (
+      <div className="loading-container">
+      <CircularProgress />
+    </div>
+    );
+  }
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardMedia

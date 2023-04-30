@@ -26,7 +26,7 @@ const HomePage = () => {
   const [meal,setMeal]=useState('')
   const user = JSON.parse(localStorage.getItem('user'))
   const payment = JSON.parse(localStorage.getItem('payment'))
-  const API_URL = "http://localhost:8000";
+  const API_URL = "https://imms-backend1.onrender.com";
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
@@ -48,14 +48,17 @@ const HomePage = () => {
       function checkPaymentStatus(sessionId) {
         console.log(sessionId);
         fetch(`${API_URL}/api/stripe/check-status/${sessionId}`, requestOptions)
-          .then((response) => response.json())
+          .then((response) =>{
+            console.log('response is ',response);
+            return response.json()
+          } )
           .then((data) => {
-            console.log(data);
+            console.log('data is ',data);
             setStatus(data.status);
             localStorage.removeItem('payment')
           })
           .catch((error) => {
-            console.error(error);
+            console.error('helo',error);
           });
       }
   
@@ -90,7 +93,7 @@ const HomePage = () => {
     setMeal(event.target.value);
   };
 
-const today = moment(dateAndTime).format('MM/DD/YYYY');
+
   return (
     <section>
       <div className="product">
@@ -132,7 +135,9 @@ const today = moment(dateAndTime).format('MM/DD/YYYY');
                 <TextField
                   // label="Controlled field"
                   type="date"
-                  min={today}
+                  InputProps={{
+                    inputProps: { min: new Date(new Date().setDate(new Date().getDate()+1)).toISOString().split("T")[0] },
+                  }}
                   required
                   value={dateAndTime}
                   onChange={(event) => setDataAndTime(event.currentTarget.value)}
@@ -166,24 +171,9 @@ const today = moment(dateAndTime).format('MM/DD/YYYY');
           </Button>
         </Box>
 
-        {/* <div className="description">
-          <h3>Stubborn Attachments</h3>
-          <h5>$20.00</h5>
-        </div> */}
+    
       </div>
-      {/* <form action={`${API_URL}/api/stripe/create-checkout-session`} method="POST">
-
-      <button type="submit">
-        Checkout
-      </button>
-    </form> */}
-
-      {/* <div>
-        <button onClick={() => checkPaymentStatus(sessionId)}>
-          Check Payment Status
-        </button>
-        <p>Payment Status: {status}</p>
-      </div> */}
+  
     </section>
   );
 };

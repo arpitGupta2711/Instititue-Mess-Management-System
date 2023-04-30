@@ -57,12 +57,8 @@ const NotEatingFromToday = () => {
           value={selectedDate}
           onChange={handleChangeDate}
           sx={{ width: "100%" }}
-          inputProps={{
-            min: new Date(
-              new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
-            )
-              .toISOString()
-              .split("T")[0],
+          InputProps={{
+            inputProps: { min: new Date(new Date().setDate(new Date().getDate()+1)).toISOString().split("T")[0] },
           }}
         />
       </FormControl>

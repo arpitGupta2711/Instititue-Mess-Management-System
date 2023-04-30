@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Typography from "@mui/material/Typography";
 import { Grid, Box, Item } from "@mui/material";
+import { LinearProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 const rows = [];
 const days = [
@@ -24,6 +26,7 @@ function createData(day, breakfast, lunch, dinner) {
 
 const Carousel = () => {
   const [meal, setFinalMenu] = useState("");
+  const [loading, setLoading] = useState(true);
   // const PrevButton = (props) => (
 
   //   <button className="prev-button" onClick={props.onClick}>
@@ -38,8 +41,9 @@ const Carousel = () => {
   // );
 
   useEffect(() => {
-    axios.get("http://localhost:8000/menu/").then((res) => {
+    axios.get("https://imms-backend1.onrender.com/menu/").then((res) => {
       console.log(res);
+
       var data = new Array();
       for (let i = 0; i < 7; i++) {
         data[i] = new Array();
@@ -70,6 +74,7 @@ const Carousel = () => {
       //   console.log(row);
       // });
       setFinalMenu(data);
+      setLoading(false);
     });
   }, []);
 
@@ -119,7 +124,14 @@ const Carousel = () => {
   // const handleNextClick = () => {
   //   this.slider.slickNext();
   // }
-
+  if (loading) {
+    return (
+      <div style={{display:'flex',justifyContent:'center',marginTop:'4px',maringBottom:'4px'}}>
+      
+        <CircularProgress />
+      </div>
+    );
+  }
   return (
     <div className="imgSlider ">
       <Slider {...settings}>
@@ -131,7 +143,7 @@ const Carousel = () => {
                   fontFamily: "'Architects Daughter', cursive",
                   fontSize: "48px",
                   wordWrap: "break-word",
-                  marginBottom:"4%"
+                  marginBottom: "4%",
                 }}
               >
                 {" "}

@@ -20,9 +20,7 @@ export default function Navbar() {
     window.location.reload();
   };
 
-  // console.log(Admin,AccountIcon,Login,SignUp)
-
-  // const {,Account} = AdminPageButtons
+ 
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -39,8 +37,7 @@ export default function Navbar() {
             }}
           >
             <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-              {" "}
-              IMMS{" "}
+             {/* <image src={}></image> */}Imms
             </Link>
           </Typography>
 
@@ -81,6 +78,16 @@ export default function Navbar() {
               sx={{ margin: "10px", display: `${Admin ? "block" : "none"}` }}
             >
               Admin
+            </Button>
+          </Link>}
+
+          
+          { user?.type==='collegeadmin'&&<Link to="collegeadmin" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              sx={{ margin: "10px", display: `${Admin ? "block" : "none"}` }}
+            >
+              College Admin
             </Button>
           </Link>}
 

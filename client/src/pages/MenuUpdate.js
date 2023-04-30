@@ -70,7 +70,7 @@ export default function MenuUpdate() {
   // let index = days.findIndex((day) => day === mealDay);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/menu/").then((res) => {
+    axios.get("https://imms-backend1.onrender.com/menu/").then((res) => {
       console.log(res);
       var data = new Array();
       for (let i = 0; i < 7; i++) {

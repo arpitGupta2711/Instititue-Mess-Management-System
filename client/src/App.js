@@ -21,6 +21,9 @@ import { useSelector } from "react-redux";
 import ViewMenu from "./pages/viewMenu";
 import MessAttendingLogs from "./pages/MessAttendingLogs";
 import LeavePage from "./pages/LeavePage";
+import CollegeAdmin from "./pages/CollegeAdmin";
+import PaymentLogs from "./pages/PaymentLogs";
+
 
 function App() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -44,6 +47,8 @@ function App() {
           <Route path="/subscribe" element={<Subscribe />}></Route>
           <Route path="/attendingLogs" element={<MessAttendingLogs />}></Route>
           <Route path="/buytoken" element={<Subscribe />}></Route>
+          <Route path="/collegeadmin" element={<CollegeAdmin />}></Route>
+          <Route path="/paymentlogs" element={<PaymentLogs />}></Route>
           <Route
             path="/profilepage"
             element={<ProfilePage></ProfilePage>}

@@ -14,9 +14,17 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoneyIcon from "@mui/icons-material/Money";
 import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
+import {CircularProgress} from "@mui/material";
 
-export const GoldToken = ({ token }) => {
+export const GoldToken = ({ token,loading }) => {
   console.log("gold", token);
+  if (loading) {
+    return (
+      <div className="loading-container">
+      <CircularProgress />
+    </div>
+    );
+  }
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardMedia

@@ -10,48 +10,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 const MessAttendingLogs = () => {
   const [logs, setLogs] = useState([]);
-  const a = [
-    {
-      date: "12/02/202",
-      registeredBreakfast: 7,
-      registeredLunch: 7,
-      registeredDinner: 7,
-      takenMealBreakfast: 1,
-      takenMealLunch: 1,
-      takenMealDinner: 1,
-    },
-    {
-      date: "12/02/202",
-      registeredBreakfast: 7,
-      registeredLunch: 7,
-      registeredDinner: 7,
-      takenMealBreakfast: 1,
-      takenMealLunch: 1,
-      takenMealDinner: 1,
-    },
-    {
-      date: "12/02/202",
-      registeredBreakfast: 7,
-      registeredLunch: 7,
-      registeredDinner: 7,
-      takenMealBreakfast: 1,
-      takenMealLunch: 1,
-      takenMealDinner: 1,
-    },
-    {
-      date: "12/02/202",
-      registeredBreakfast: 7,
-      registeredLunch: 7,
-      registeredDinner: 7,
-      takenMealBreakfast: 1,
-      takenMealLunch: 1,
-      takenMealDinner: 1,
-    },
-  ];
-
+  
 
   useEffect(() => {
-    axios.get("http://localhost:8000/get-report/").then((res) => {
+    axios.get("https://imms-backend1.onrender.com/get-report/").then((res) => {
       console.log(res);
       setLogs(res.data);
     });
