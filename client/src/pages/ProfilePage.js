@@ -61,20 +61,31 @@ const ProfilePage = () => {
         name={user?.name}
         email={user?.email}
       ></DashboardNavbar>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <Grid
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Button
           variant="contained"
           onClick={() => {
             setShowQr(true);
           }}
-          sx={{ marginRight: "3%" }}
         >
           Show QR Code
         </Button>
         <Link to="/leavepage">
-          <Button variant="contained">Leave Application</Button>
+          <Button variant="contained" sx={{ margin: 2 }}>
+            {" "}
+            Leave Application
+          </Button>
         </Link>
-      </div>
+        <Link to="/user-transaction">
+          <Button variant="contained">Transactions</Button>
+        </Link>
+      </Grid>
 
       {showQr && (
         <div

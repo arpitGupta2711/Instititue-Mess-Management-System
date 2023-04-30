@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FormControl, FormLabel } from "@mui/material";
 import { Button, TextField } from "@mui/material";
-import { InputAdornment } from "@mui/material";
+import { InputAdornment, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
@@ -58,43 +58,39 @@ const LeaveForm = () => {
   };
 
   return (
-    <form>
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-        }}
-      >
-        <Grid item xs={12} sm={6} lg={12}>
-          <FormControl>
-            <FormLabel>Start Date</FormLabel>
-            <TextField
-              type="date"
-              variant="outlined"
-              value={startDate}
-              InputProps={{
-                inputProps: { min: new Date().toISOString().split("T")[0] },
-              }}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={6} lg={12}>
-          <FormControl>
-            <FormLabel>End Date</FormLabel>
-            <TextField
-              type="date"
-              variant="outlined"
-              value={endDate}
-              InputProps={{
-                inputProps: { min: new Date().toISOString().split("T")[0] },
-              }}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </FormControl>
+    <Box
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <form>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <FormControl>
+              <FormLabel>Start Date</FormLabel>
+              <TextField
+                type="date"
+                variant="outlined"
+                value={startDate}
+                InputProps={{
+                  inputProps: { min: new Date().toISOString().split("T")[0] },
+                }}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl>
+              <FormLabel>End Date</FormLabel>
+              <TextField
+                type="date"
+                variant="outlined"
+                value={endDate}
+                InputProps={{
+                  inputProps: { min: new Date().toISOString().split("T")[0] },
+                }}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </FormControl>
+          </Grid>
         </Grid>
         <Button
           variant="contained"
@@ -107,8 +103,8 @@ const LeaveForm = () => {
         >
           Submit
         </Button>
-      </Grid>
-    </form>
+      </form>
+    </Box>
   );
 };
 

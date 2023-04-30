@@ -54,7 +54,7 @@ const MessAttendingLogs = () => {
   const dispatch = useDispatch();
   dispatch(manageLogsNavbar());
   useEffect(() => {
-    axios.get("http://localhost:8000/get-report/").then((res) => {
+    axios.get("https://imms-backend1.onrender.com/get-report/").then((res) => {
       console.log(res);
       setLogs(res.data);
     });

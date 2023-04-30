@@ -51,7 +51,7 @@ const NotEatingFromToday = () => {
     <Box
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <FormControl required sx={{ width: "100%" }}>
+      <FormControl required sx={{ width: "30%" }}>
         <FormLabel>Date</FormLabel>
         <Input
           type="date"
@@ -68,7 +68,7 @@ const NotEatingFromToday = () => {
         />
       </FormControl>
 
-      <FormControl required sx={{ width: "100%" }}>
+      <FormControl required sx={{ width: "30%", margin: "24px" }}>
         <FormLabel>Meal</FormLabel>
         <Select
           value={selectedMeal}
