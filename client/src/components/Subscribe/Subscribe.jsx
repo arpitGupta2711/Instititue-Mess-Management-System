@@ -63,11 +63,14 @@ const HomePage = () => {
           .then((data) => {
             console.log("data is ", data);
             setStatus(data.status);
-            setLoading(false)
+            
             localStorage.removeItem("payment");
+            setLoading(false)
+            alert('Payment Successfull')
           })
           .catch((error) => {
             console.error("helo", error);
+            alert('Payment Unsuccessfull')
           });
       }
       
