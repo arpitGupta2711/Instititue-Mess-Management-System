@@ -11,24 +11,36 @@ import axios from "axios";
 const Feedback = () => {
   const [rating, setRating] = useState(0);
   const [input, setInput] = useState("");
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem("user"));
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input, rating);
-    axios.post('https://imms-backend1.onrender.com/give-feedback/', {
-      username:user.username,
-      message:input,
-      rating:rating
-    })
-    .then(function (response) {
-      console.log(response);
-      setInput("")
-      setRating(0)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .post("https://imms-backend1.onrender.com/give-feedback/", {
+        username: user.username,
+        message: input,
+        rating: rating,
+      })
+      .then(function (response) {
+        console.log(response);
+        setInput("");
+        setRating(0);
+        axios
+          .post("https://imms-backend1.onrender.com/view-feedback/", {
+            username: user.username,
+            message: input,
+            rating: rating,
+          })
+          .then(function (response) {
+            console.log(response);
+            setInput("");
+            setRating(0);
+          });
+      })
 
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <div className="feedback">
@@ -69,10 +81,10 @@ const Feedback = () => {
             multiline
             sx={{ backgroundColor: "white", width: "68%", height: "100%" }}
             value={input}
-              onChange={(e) => {
-                console.log(e.currentTarget.value);
-                setInput(e.currentTarget.value);
-              }}
+            onChange={(e) => {
+              console.log(e.currentTarget.value);
+              setInput(e.currentTarget.value);
+            }}
             id="outlined-basic"
             label="Feedback"
             variant="outlined"
