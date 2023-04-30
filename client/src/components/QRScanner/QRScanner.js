@@ -80,7 +80,7 @@ export const QRScanner = forwardRef((props, ref) => {
           >
             <QrReader
               scanDelay={400}
-              constraints={{ facingMode: 'user' }}
+              constraints={{ facingMode: 'rear' }}
               onError={handleError}
               onResult={handleScan}
               videoId="qr"

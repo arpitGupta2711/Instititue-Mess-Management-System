@@ -9,14 +9,18 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import { display } from "@mui/system";
 import { useSelector, useDispatch } from "react-redux";
+import {useNavigate} from "react-router-dom"
 
 export default function Navbar() {
+  const navigate=useNavigate()
   const { Admin, AccountIcon, Login, SignUp, UpdateMenu, UpdateFee, Logout } =
     useSelector((store) => store.navbar);
   const user = JSON.parse(localStorage.getItem("user"));
   const handleLogout = () => {
     localStorage.clear();
+   navigate('/')
     window.location.reload();
+
   };
 
  
@@ -36,7 +40,7 @@ export default function Navbar() {
             }}
           >
             <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-             {/* <image src={}></image> */}Imms
+             {/* <image src={}></image> */}IMMS
             </Link>
           </Typography>
 
