@@ -105,7 +105,7 @@ export default function MenuUpdate() {
   useEffect(() => {
     if (click) {
       axios
-        .post(`http://localhost:8000/update-menu/`, {
+        .post(`https://imms-backend1.onrender.com/update-menu/`, {
           day: days.findIndex((day) => day === mealDay),
           time: time.findIndex((time) => time === mealTime),
           meal: meal,
