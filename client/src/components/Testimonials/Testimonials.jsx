@@ -11,30 +11,24 @@ const Testimonials = () => {
             imgUrl:'images/person.jpg',
             name:'Susan',
             stars:3,
-            description:"Really like today's food. Quality was quite good"
+            description:"Kadhi chana today was average and there was fantastic salad"
 
         },
         {
             imgUrl:'images/person2.jpg',
             name:'Giri',
             stars:5,
-            description:"Marvelous . Loved Every bit of it."
+            description:"Loved today's . Just Yummy!!!!!"
 
         },
         {
             imgUrl:'images/person.jpg',
-            name:'Susan',
-            stars:1,
-            description:"Really like today's food. Quality was quite good"
+            name:'Anunaya',
+            stars:3,
+            description:"Today's meal taste was good"
 
-        },
-        {
-            imgUrl:'images/person.jpg',
-            name:'Param',
-            stars:4,
-            description:"Really like today's food. Quality was quite good. Bhut kharab bhai dimag ka hi dahi was better than mess ka dahi"
-
-        },
+        },  
+     
     ]
 
     const settings = {
